@@ -1,3 +1,45 @@
+const listadepartamentoss=[];
+
+const loaddepartamentoss=async()=>{
+    try{
+        listadepartamentoss.length=0;
+        const respuesta=await fetch('http://localhost:3000/departamentoss');
+
+        if(!respuesta.ok){
+           throw new Error('Error al cargar departamentoss. Estado: ',respuesta.status);
+        }
+        const departamento=await respuesta.json();
+        listadepartamentos.push(...departamento);;
+
+    }catch(error){
+        console.error("Error al cargar departamentoss",error.message);
+    }
+}
+
+
+const guardarAsignatura= async(nuevoAsignatura)=>{
+    try{
+
+        const respuesta=await fetch('http://localhost:3000/asignaturas',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(nuevoAsignatura),
+        });
+
+        if(!respuesta.ok){
+           throw new Error('Error al crear la asignatura. Estado: ',respuesta.status);
+        }
+        const asignaturaCreado=await respuesta.json();
+       
+        
+        console.log('Asignatura creada:', asignaturaCreado);
+
+    }catch(error){
+        console.error("Error al cargar asignatura",error.message);
+    }
+}
 const botonesDepartamento=async()=>{
   
     const contenedordepartamentos =document.getElementById('OpcionesDepartamentos');
