@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universidad</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+   <section id="paginaprincipal">
+    <main id="contenedorPaginaPrincipal">
+        <section class="seccionsPrincipal" id="seccionUniversidad">
+        <nav id="Navs"> 
+        <img id="logo"src="Felisa universidad.png" alt="logo">
+        <ul id="opcionesNavs">
+            <li class="opcionesnavs"  id="LaUniversidad"><a href="#seccionUniversidad">La Universidad</a>
+                <ul>
+                    <li class="seccionMisioyVision" onclick="">Misio</li>
+                    <li class="seccionMisioyVision" onclick="">Vision</li>
+                    <li class="seccionMisioyVision" onclick="">Historia y Simbolos</li>
+                    <li class="seccionMisioyVision" onclick="">Campus y entorno</li>
+                    <li class="seccionMisioyVision" onclick="">Rectoria</li>
+
+                </ul>
+            </li>
+            <li class="opcionesnavs" id="seccionProgramasyFacultades"><a href="#seccionProgramasyFacultades">Programas y Facultades</a></li>
+            <li class="opcionesnavs" id="Investigacion"><a href="#seccionInvestigacion">Investigacion</a></li>
+            <li class="opcionesnavs"  id="Externalizacion"><a href="#seccionExternalizacion">Externalizacion</a></li>
+
+            
+            <li class="opcionesnavs" onclick="Ingresar()" id="ingresar">ingresar</li>
+        </ul>
+        </nav>
+    
+        <div id="CentroPirincipal">
+            <h1>Universidad Carmen Felisa Amaya Ronderos</h1>
+        </div>
+        </section>
+        <section class="seccionsPrincipal" id="seccionProgramasyFacultades">Programas y Facultades</section>
+        <section class="seccionsPrincipal" id="seccionInvestigacion"></section>
+        <section class="seccionsPrincipal" id="seccionExternalizacion"></section>
+
+    </main>
+   </section>
+    <section id="inicio">
+        <aside id="left">
+            Universidad Carmen Felisa Amaya Ronderos
+            </aside>
+        <aside id="Rigth">
+            <div id="descripcionUniversidad"></div>
+            <div id="ascceso">
+                <h1>Seleccione el tipo de cuenta para ingresar</h1>
+                <button onclick="estudiantes()" class="botoninicio" id="ingresoEstudiante">
+                    Estudiante
+                </button>
+                <button onclick="" class="botoninicio" id="ingresoProfesor">Profesor</button>
+                <button onclick="" class="botoninicio" id="ingresoAdministrativo">Administrativo</button>
+            </div>
+        </aside>
+    </section>
+    <section id="contraseña">
+        
+    </section>
+    <main id="main">
+        <section id="head">
+            <h1>Universidad Carmen Felisa Amaya Ronderos</h1>
+        </section>
+        <section class="contenedor" id="contenedor">
+                <header id="headContenedor">
+                    <i onclick="inicio()" class="bi bi-backspace"></i>
+                    <h1>Hola</h1>
+                </header>
+                <!-- Opciones principales de la pagina  -->
+            <div id="contenidoContenedor">
+                <section class="secciones" id="Departamentos">
+                    <div id="botonDepartamentos">
+                        <button onclick="botonesDepartamento()" >Departamentos</button>
+                    </div>
+                    <div class="Informacion" id="OpcionesDepartamentos">
+                        <h2> En la Universidad Carmen Felisa Amaya Ronderos nos especializamos  </h2>
+                    </div>
+                </section>
+                <section class="secciones" id="Estudiantes">
+                    <div  id="botonEstudiantes">
+                        <button onclick="opcionesEstudiantes()">Estudiantes</button>
+                    </div>
+                    <div class="Informacion" id="OpcionesEstudiantes">
+                    </div>
+                </section>
+                <section class="secciones" id="Prosfesores">
+                    <div id="botonProsfesores">
+                        <button onclick="botonesProfesor()" >Prosfesores</button>
+                    </div>
+                    <div class="Informacion" id="OpcionesProfesores">
+                    </div>
+                </section >
+                <section class="secciones" id="Tarifas">
+                    <div id="botonTarifas">
+                        <button onclick="botonesTarifas()">Tarifas</button>
+                    </div>
+                    <div class="Informacion" id="opcionesTarifas">
+                    </div>
+                </section >
+                <section class="secciones" id="Asignaturas">
+                    <div id="botonAsignaturas">
+                        <button onclick="botonesAsignatura()" >Asignaturas</button>
+                    </div>
+                    <div class="Informacion" id="opcionesAsignaturas">
+                    </div>
+                </section >
+                <section class="secciones" id="Periodos">
+                    <div id="botonPeriodos">
+                        <button onclick="botonesPeriodos()" >Periodos</button>
+                    </div>
+                    <div class="Informacion" id="OpcionesPeriodos">
+                    </div>
+                </section >
+                <section class="secciones" id="Programas">
+                    <div id="botonProgramas">
+                        <button onclick="botonesProgramas()" >Programas</button>
+                    </div>
+                    <div class="Informacion" id="opcionesProgramas">
+                    </div>
+                </section >
+                <section class="secciones" id="Cursos">
+                    <div id="botonCursos">
+                        <button  onclick="botonesCursos()">Cursos</button>
+                    </div >
+                    <div class="Informacion" id="opcionesCursos">
+                    </div>
+                </section >
+                <section class="secciones" id="Salones">
+                    <div id="botonSalones">
+                        <button  onclick="botonesSalones()">Salones</button>
+                    </div class="Informacion">
+                    <div class="Informacion" id="opcionesSalones">
+                    </div>
+                </section>
+            </div>           
+        </section>        
+    </main>
+    <script src="js/asignaturas.js"></script>
+    <script src="js/cursos.js"></script>
+    <script src="js/departamentos.js"></script>
+    <script src="js/Estudiantes.js"></script>
+    <script src="js/inicion..js"></script>
+    <script src="js/periodos.js"></script>
+    <script src="js/Profesores.js"></script>
+    <script src="js/programas.js"></script>
+    <script src="js/tarifas.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/salones.js"></script>
+    <script src="js/paginaprincipal.js"></script>
+    <script>
+        const rutaHead=document.getElementById("Navs")
+        window.addEventListener("scroll", function(){
+            if (window.scrollY > 0){ 
+                rutaHead.classList.add('fondo-negro')
+            }
+            else{rutaHead.classList.remove('fondo-negro')}
+    
+        })
+    </script>
+</body>
+</html>
+
