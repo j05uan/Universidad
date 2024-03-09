@@ -1,3 +1,6 @@
+
+
+
 const botonesProfesor=async()=>{
     const contenedor4 =document.getElementById('OpcionesProfesores');
     contenedor4.innerHTML = `
@@ -90,7 +93,7 @@ const modificarProfesor = async () => {
     boton2.style.display = 'none';
     boton3.style.display = 'none';
 
-    verificarProfesores();
+    await verificarProfesores();
     if (Estado === 'Encontrado') {
         contenedorProfesores.innerHTML = `
       <form id="MenuModificarEProfesor">
@@ -182,5 +185,35 @@ const modificarDepartamentoId = () => {
     <button type="button" onclick="GuardarModificionProfesor()">Guardar Modificación Profesor</button>
     <button id="atras" class="atras" onclick="modificarProfesor()">atras</button>
     </form>`;
+}
+
+const mostrarListadoProfesores = async () => {
+    await loadProfesores();
+    const contenedor2 = document.getElementById('OpcionesProfesores');
+    stylesContenedorNuevo(contenedor2);
+    limpiarpantalla();
+    const listadoProfesores = document.getElementById('listadoProfesores');
+    listadoProfesores.style.display = 'flex';
+    
+    for (const Profesor of listaProfesores) {
+        const li = document.createElement('li');
+        li.textContent = `ID: ${Profesor.id}, tipo_documento: ${Profesor.tipo_documento}, numero_documento: ${Profesor.numero_documento}, nombre: ${Profesor.nombre}, apellido: ${Profesor.apellido}, departamento_id: ${Profesor.departamento_id}`;
+        ul.appendChild(li);
+    }
+    listadoProfesores.innerHTML = '';
+    listadoProfesores.appendChild(ul);
+
+    const volverButton = document.createElement('button');
+    volverButton.textContent = 'Volver al Formulario';
+    volverButton.addEventListener('click', volverFormularioProfesores);
+    listadoProfesores.appendChild(volverButton);
+}
+
+const volverFormularioProfesores = () => {
+    const ProfesoresForm = document.getElementById('crearProfesor');
+    const listadoProfesores = document.getElementById('listadoProfesores');
+
+    listadoProfesores.style.display = 'none';
+    ProfesoresForm.style.display = 'block';
 }
 

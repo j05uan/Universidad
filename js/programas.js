@@ -55,7 +55,7 @@ const crearProgramas = async () => {
   }
 
   await guardar(nuevoPrograma);
-  await loadEstudiantes();
+  await loadProgramas();
 
   nombreInput.value = '';
   nivelInput.value = '';
@@ -133,3 +133,33 @@ const modificarNivelProgramas = () => {
   </form>
   `;
 }
+const mostrarListadoProgramas = async () => {
+  await loadProgramas();
+  const contenedor2 = document.getElementById('OpcionesProgramas');
+  stylesContenedorNuevo(contenedor2);
+  limpiarpantalla();
+  const listadoProgramas = document.getElementById('listadoProgramas');
+  listadoProgramas.style.display = 'flex';
+  
+  for (const Programa of listaProgramas) {
+      const li = document.createElement('li');
+      li.textContent = `nombre: ${Programa.id}, nivel: ${Programa.nivel}`;
+      ul.appendChild(li);
+  }
+  listadoProgramas.innerHTML = '';
+  listadoProgramas.appendChild(ul);
+
+  const volverButton = document.createElement('button');
+  volverButton.textContent = 'Volver al Formulario';
+  volverButton.addEventListener('click', volverFormularioProgramas);
+  listadoProgramas.appendChild(volverButton);
+}
+
+const volverFormularioProgramas = () => {
+  const ProgramasForm = document.getElementById('crearPrograma');
+  const listadoProgramas = document.getElementById('listadoProgramas');
+
+  listadoProgramas.style.display = 'none';
+  ProgramasForm.style.display = 'block';
+}
+

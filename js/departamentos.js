@@ -1,43 +1,43 @@
-const listadepartamentoss=[];
+const listadepartamentos=[];
 
-const loaddepartamentoss=async()=>{
+const loaddepartamentos=async()=>{
     try{
-        listadepartamentoss.length=0;
-        const respuesta=await fetch('http://localhost:3000/departamentoss');
+        listadepartamentos.length=0;
+        const respuesta=await fetch('http://localhost:3000/departamentos');
 
         if(!respuesta.ok){
-           throw new Error('Error al cargar departamentoss. Estado: ',respuesta.status);
+           throw new Error('Error al cargar departamentos. Estado: ',respuesta.status);
         }
         const departamento=await respuesta.json();
         listadepartamentos.push(...departamento);;
 
     }catch(error){
-        console.error("Error al cargar departamentoss",error.message);
+        console.error("Error al cargar departamentos",error.message);
     }
 }
 
 
-const guardarAsignatura= async(nuevoAsignatura)=>{
+const guardarDEpartamentos= async(nuevoDepartamento)=>{
     try{
 
-        const respuesta=await fetch('http://localhost:3000/asignaturas',{
+        const respuesta=await fetch('http://localhost:3000/departamentos',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
             },
-            body: JSON.stringify(nuevoAsignatura),
+            body: JSON.stringify(nuevoDepartamento),
         });
 
         if(!respuesta.ok){
-           throw new Error('Error al crear la asignatura. Estado: ',respuesta.status);
+           throw new Error('Error al crear la departamento. Estado: ',respuesta.status);
         }
-        const asignaturaCreado=await respuesta.json();
+        const departamentoCreado=await respuesta.json();
        
         
-        console.log('Asignatura creada:', asignaturaCreado);
+        console.log('Departamento creado:', departamentoCreado);
 
     }catch(error){
-        console.error("Error al cargar asignatura",error.message);
+        console.error("Error al cargar Departamento",error.message);
     }
 }
 const botonesDepartamento=async()=>{
@@ -48,7 +48,8 @@ const botonesDepartamento=async()=>{
           <button class="botonsDepartamentos" id="botoncrearDepartamento"type="button" onclick="formularioCrearDEpartamento()">Crear Departamentos</button>
           <button class="botonsDepartamentos" id="botonmodificarDepartamento" type="button" onclick="()">Modificar Departamentos</button>
           <button class="botonsDepartamentos" id="botonmostrarListado" type="button" onclick="mostrarListado()">Ver Listado de Deprtamentos</button>
-          <div id="departamentoss"></div>
+          <div id="crearDepartamento"></div>
+          <div id="listadoDepartamentos"></div>
           <button id="atras" class="atras" onclick="volverInicio()">atras</button>
           
       </form>`;
@@ -91,7 +92,7 @@ const creardepartamentos= async ()=>{
     const Id=IdInput.value;
 
     const nuevo={
-        id:listaDepartamentos.length+1,
+        id:listadepartamentos.length+1,
         identificaion:Id,
         nombre:nombre,
     }
@@ -191,5 +192,38 @@ const modificarNombreDepartamento=()=>{
     <button id="atras" class="atras" onclick="modificarDepartamento()">atras</button>
     </form>
     `;
+};
+
+const mostrarListadoDepartamentos = async () => {
+    await loadEstudiantes();
+    const contenedor2 = document.getElementById('OpcionesDepartamentos');
+    stylesContenedorNuevo(contenedor2);
+    limpiarpantalla();
+    const listadoDepartamentos = document.getElementById('listadoDepartamentos');
+    listadoDepartamentos.style.display = 'flex';
+    
+    for (const Departamento of listadepartamentos) {
+        const li = document.createElement('li');
+        li.textContent = `ID: ${Departamento.id}, identificaion: ${Departamento.identificaion}, nombre: ${Departamento.nombre}`;
+        ul.appendChild(li);
+    }
+    listadoDepartamentos.innerHTML = '';
+    listadoDepartamentos.appendChild(ul);
+
+    const volverButton = document.createElement('button');
+    volverButton.textContent = 'Volver al Formulario';
+    volverButton.addEventListener('click', volverFormularioDepartamentos);
+    listadoDepartamentos.appendChild(volverButton);
 }
+
+const volverFormularioDepartamentos = () => {
+    const DepartamentosForm = document.getElementById('crearDepartamento');
+    const listadoDepartamentos = document.getElementById('listadoDepartamentos');
+
+    listadoDepartamentos.style.display = 'none';
+    DepartamentosForm.style.display = 'block';
+}
+
+
+
 

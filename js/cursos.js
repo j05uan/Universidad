@@ -144,7 +144,7 @@ const verificarCursos = async () => {
       <label for="nombreCursoVerificacion">Nombre del Curso:</label>
       <input type="text" id="nombreCursoVerificacion" required>
     </form>`;
-  for (const curso of listaCursos) {
+  for (const curso of listaCursos ) {
       if (curso[nombre] === nombre) {
           alert('Curso Encontrado!');
           Estado = 'Encontrado';
@@ -187,7 +187,7 @@ const modificarGuiaCatedra = () => {
   <h3>Menu modificar Guía de Cátedra</h3>
   <label for="newguiaCatedra">Guía de Cátedra:</label>
   <input type="text" id="newguiaCatedra" required></input>
-  <button type="button" onclick="guardarModificacionCurso(guardarModificacionCurso)">Guardar Modificación Curso</button>
+  <button type="button" onclick="guardarModificacionCurso(newguiaCatedra)">Guardar Modificación Curso</button>
   <button id="atras" class="atras" onclick="modificarCurso()">atras</button>
   </form>`;
 }

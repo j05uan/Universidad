@@ -104,7 +104,6 @@ const formularioCrearEstudiante = async () => {
 }
 
 const crearEstudiante = async () => {
-    const idInput = document.getElementById('identificacionEstudiante');
     const nombreInput = document.getElementById('nombreEstudiante');
     const apellidoInput = document.getElementById('apellidoEstudiante');
     const tipoDocumentoInput = document.getElementById('tipoDocumentoEstudiante');
@@ -129,7 +128,7 @@ const crearEstudiante = async () => {
     const programaId = programaInput.value;
 
     const nuevoEstudiante = {
-        id: id,
+        id: listaCursos.length + 1,
         nombre: nombre,
         apellido: apellido,
         tipo_documento: tipoDocumento,
@@ -255,9 +254,7 @@ const modificarApellido = () => {
     <button type="button" onclick="guardarModificacionEstudiante()">Guardar Modificación Estudiante</button>
     <button id="atras" class="atras" onclick="opcionesEstudiantes()">Atrás</button>
     </form>`;
-}
-
-// Continuar con los métodos restantes de modificación de campos
+};
 
 const  mostrarListadoEstudiantes=async()=>{
     await loadEstudiantes();
@@ -287,7 +284,6 @@ const volverFormulariEstudiantes=()=>{
 
     listadoEstudiantes.style.display='none';
     EstudiantesForm.style.display='block';
-    
 }
 
 

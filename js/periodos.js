@@ -1,3 +1,45 @@
+const listaPeriodos = [];
+
+const loadPeriodos = async () => {
+    try {
+        listaPeriodos.length = 0;
+        const respuesta = await fetch('http://localhost:3000/periodos');
+
+        if (!respuesta.ok) {
+            throw new Error('Error al cargar Periodos. Estado: ', respuesta.status);
+        }
+        const periodos = await respuesta.json();
+        listaPeriodos.push(...periodos);
+
+    } catch (error) {
+        console.error("Error al cargar periodos", error.message);
+    }
+}
+
+const guardarPeriodo = async (nuevoPeriodo) => {
+    try {
+
+        const respuesta = await fetch('http://localhost:3000/periodos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(nuevoPeriodo),
+        });
+
+        if (!respuesta.ok) {
+            throw new Error('Error al crear el periodo. Estado: ', respuesta.status);
+        }
+        const periodoCreado = await respuesta.json();
+
+
+        console.log('Periodo creado:', periodoCreado);
+
+    } catch (error) {
+        console.error("Error al cargar periodo", error.message);
+    }
+}
+
 const botonesPeriodos = async () => {
     const contenedorPeriodos = document.getElementById('OpcionesPeriodos');
     contenedorPeriodos.innerHTML = `
@@ -57,7 +99,7 @@ const crearPeriodos = async () => {
     };
 
     await guardarPeriodo(nuevoPeriodo);
-    await loadEstudiantes();
+    await loadPeriodos();
 
     codigoInput.value = '';
     anoInput.value = '';
@@ -154,5 +196,35 @@ const modificarSemestrePeriodo = () => {
     <button type="button" onclick="GuardarModificionPeriodo()">Guardar Modificación del Semestre del Periodo</button>
     <button id="atras" class="atras" onclick="modificarPeriodo()">Atrás</button>
     </form>`;
+}
+
+const mostrarListadoPeriodos = async () => {
+  await loadEstudiantes();
+  const contenedor2 = document.getElementById('OpcionesPeriodos');
+  stylesContenedorNuevo(contenedor2);
+  limpiarpantalla();
+  const listadoPeriodos = document.getElementById('listadoPeriodos');
+  listadoPeriodos.style.display = 'flex';
+  
+  for (const Periodo of listaPeriodos) {
+      const li = document.createElement('li');
+      li.textContent = `ID: ${Periodo.id}, Nombre: ${Periodo.nombre}, Edad: ${Periodo.edad}, Email: ${Periodo.email}`;
+      ul.appendChild(li);
+  }
+  listadoPeriodos.innerHTML = '';
+  listadoPeriodos.appendChild(ul);
+
+  const volverButton = document.createElement('button');
+  volverButton.textContent = 'Volver al Formulario';
+  volverButton.addEventListener('click', volverFormularioPeriodos);
+  listadoPeriodos.appendChild(volverButton);
+}
+
+const volverFormularioPeriodos = () => {
+  const PeriodosForm = document.getElementById('crearPeriodo');
+  const listadoPeriodos = document.getElementById('listadoPeriodos');
+
+  listadoPeriodos.style.display = 'none';
+  PeriodosForm.style.display = 'block';
 }
 

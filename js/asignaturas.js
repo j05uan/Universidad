@@ -276,7 +276,7 @@ const  mostrarListado=async()=>{
     
     for(const asignatura of listaAsignaturas){
         const li=document.createElement('li');
-        li.textContent= `ID: ${asignatura.id}, Nombre: ${asignatura.nombre}, Edad: ${asignatura.edad}, Email: ${asignatura.email}`;
+        li.textContent= `ID: ${asignatura.id}, curso_id: ${asignatura.curso_id}, codigo: ${asignatura.codigo}, creditos: ${asignatura.creditos}, profesor_id: ${asignatura.profesor_id}, cupos_disponibles: ${asignatura.cupos_disponibles}, programa_id: ${asignatura.programa_id}, horario_clases: ${asignatura.horario_clases}`;
         ul.appendChild(li);
     }
     listadoAsignaturas.innerHTML='';
@@ -296,64 +296,71 @@ const volverFormulario=()=>{
     asignaturasForm.style.display='block';
     
 }
-const guardarModificacionCurso = async (valor) => {
-    const newcodigo = document.getElementById('codigoAsignatura').value;
-    const newcreditos = document.getElementById('creditosAsignatura').value;
-    const newcupos = document.getElementById('cuposAsignatura').value;
-    const newIdcurso = document.getElementById('cursoAsignatura').value;
-    const newprofe = document.getElementById('profesorAsignatura').value;
-    const newprograma = document.getElementById('programaAsignatura').value;
-    const newhorarios = document.getElementById('').value;
-    const nombreverificacion = document.getElementById('codigoAsignatura').value;
-    let newInput = valor;
+
+const verificarProfesores=()=>{
   
-    listaasignaturas.forEach(asignatura => {
-      if (asignatura.nombre === nombreverificacion) {
-        if (newInput === newcodigo) {
-          asignatura.nombre = newcodigo;
-        } else if (newInput === newcreditos) {
-          asignatura.codigo = newcreditos;
-        } else if (newInput === newcupos) {
-          asignatura.guia_catedra = newcupos;
-        }else if (newInput === newIdcurso) {
-            asignatura.guia_catedra = newIdcurso;
-        }else if (newInput === newprofe) {
-            asignatura.guia_catedra = newprofe;
-        }else if (newInput === newprograma) {
-            asignatura.guia_catedra = newprograma;
-        }else if (newInput === newhorarios) {
-            asignatura.guia_catedra = newhorarios;
-        }
+}
+
+
+
+// const guardarModificacionCurso = async (valor) => {
+//     const newcodigo = document.getElementById('codigoAsignatura').value;
+//     const newcreditos = document.getElementById('creditosAsignatura').value;
+//     const newcupos = document.getElementById('cuposAsignatura').value;
+//     const newIdcurso = document.getElementById('cursoAsignatura').value;
+//     const newprofe = document.getElementById('profesorAsignatura').value;
+//     const newprograma = document.getElementById('programaAsignatura').value;
+//     const newhorarios = document.getElementById('').value;
+//     const nombreverificacion = document.getElementById('codigoAsignatura').value;
+//     let newInput = valor;
+  
+//     listaasignaturas.forEach(asignatura => {
+//       if (asignatura.nombre === nombreverificacion) {
+//         if (newInput === newcodigo) {
+//           asignatura.nombre = newcodigo;
+//         } else if (newInput === newcreditos) {
+//           asignatura.codigo = newcreditos;
+//         } else if (newInput === newcupos) {
+//           asignatura.guia_catedra = newcupos;
+//         }else if (newInput === newIdcurso) {
+//             asignatura.guia_catedra = newIdcurso;
+//         }else if (newInput === newprofe) {
+//             asignatura.guia_catedra = newprofe;
+//         }else if (newInput === newprograma) {
+//             asignatura.guia_catedra = newprograma;
+//         }else if (newInput === newhorarios) {
+//             asignatura.guia_catedra = newhorarios;
+//         }
 
   
-        const objetoModificado = {
-          nombre: asignatura.nombre,
-          codigo: asignatura.codigo,
-          guia_catedra: asignatura.guia_catedra
-        };
+//         const objetoModificado = {
+//           nombre: asignatura.nombre,
+//           codigo: asignatura.codigo,
+//           guia_catedra: asignatura.guia_catedra
+//         };
   
-        fetch('http://localhost:3000/asignatura/' + asignatura.id, {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(objetoModificado)
-        })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Error al modificar el objeto');
-          }
-          return response.json();
-        })
-        .then(data => {
-          console.log('Objeto modificado con éxito:', data);
-        })
-        .catch(error => {
-          console.error('Error al realizar la solicitud:', error);
-        });
-      }
-    });
+//         fetch('http://localhost:3000/asignatura/' + asignatura.id, {
+//           method: 'PATCH',
+//           headers: {
+//             'Content-Type': 'application/json'
+//           },
+//           body: JSON.stringify(objetoModificado)
+//         })
+//         .then(response => {
+//           if (!response.ok) {
+//             throw new Error('Error al modificar el objeto');
+//           }
+//           return response.json();
+//         })
+//         .then(data => {
+//           console.log('Objeto modificado con éxito:', data);
+//         })
+//         .catch(error => {
+//           console.error('Error al realizar la solicitud:', error);
+//         });
+//       }
+//     });
   
-    alert('Modificación del curso guardada con éxito!');
-  }
+//     alert('Modificación del curso guardada con éxito!');
+//   }
   

@@ -60,7 +60,6 @@ const crearSalones = async () => {
       piso: piso
   };
 
-  // Lógica para guardar el salón (implementar según la aplicación)
 
   numeroIdentificacionInput.value = '';
   capacidadInput.value = '';
@@ -163,16 +162,33 @@ const modificarPisoSalon = () => {
   </form>`;
 }
 
-const guardarModificacionSalon = () => {
-  // Lógica para guardar la modificación del salón (implementar según la aplicación)
-  alert('Modificación del salón guardada con éxito!');
+const mostrarListadoSalones = async () => {
+  await loadSalones();
+  const contenedor2 = document.getElementById('OpcionesSalones');
+  stylesContenedorNuevo(contenedor2);
+  limpiarpantalla();
+  const listadoSalones = document.getElementById('listadoSalones');
+  listadoSalones.style.display = 'flex';
+  
+  for (const Salón of listaSalones) {
+      const li = document.createElement('li');
+      li.textContent = `ID: ${Salón.id}, tipo_documento: ${Salón.tipo_documento}, numero_documento: ${Salón.numero_documento}, nombre: ${Salón.nombre}, apellido: ${Salón.apellido}, departamento_id: ${Salón.departamento_id}`;
+      ul.appendChild(li);
+  }
+  listadoSalones.innerHTML = '';
+  listadoSalones.appendChild(ul);
+
+  const volverButton = document.createElement('button');
+  volverButton.textContent = 'Volver al Formulario';
+  volverButton.addEventListener('click', volverFormularioSalones);
+  listadoSalones.appendChild(volverButton);
 }
 
-// Debes tener en cuenta que la lógica para guardar, cargar y manipular la lista de salones
-// (listaSalones) debe estar implementada en tu aplicación.
+const volverFormularioSalones = () => {
+  const SalonesForm = document.getElementById('crearSalon');
+  const listadoSalones = document.getElementById('listadoSalones');
 
-// Asegúrate también de que los eventos de los botones y la carga de datos estén correctamente manejados
-// en tu aplicación.
-
-// Recuerda adaptar los identificadores de los elementos HTML y las variables según la estructura de tu aplicación.
+  listadoSalones.style.display = 'none';
+  SalonesForm.style.display = 'block';
+}
 

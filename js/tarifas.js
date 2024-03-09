@@ -146,3 +146,32 @@ const modificarProgramaId = () => {
   </form>`;
 }
 
+const mostrarListadoTarifas = async () => {
+  await loadTarifas();
+  const contenedor2 = document.getElementById('OpcionesTarifas');
+  stylesContenedorNuevo(contenedor2);
+  limpiarpantalla();
+  const listadoTarifas = document.getElementById('listadoTarifas');
+  listadoTarifas.style.display = 'flex';
+  
+  for (const Tarifa of listaTarifas) {
+      const li = document.createElement('li');
+      li.textContent = `ID: ${Tarifa.id}, costo_credito: ${Tarifa.costo_credito}, periodo_id: ${Tarifa.periodo_id}, programa_id: ${Tarifa.programa_id}`;
+      ul.appendChild(li);
+  }
+  listadoTarifas.innerHTML = '';
+  listadoTarifas.appendChild(ul);
+
+  const volverButton = document.createElement('button');
+  volverButton.textContent = 'Volver al Formulario';
+  volverButton.addEventListener('click', volverFormularioTarifas);
+  listadoTarifas.appendChild(volverButton);
+}
+
+const volverFormularioTarifas = () => {
+  const TarifasForm = document.getElementById('crearTarifa');
+  const listadoTarifas = document.getElementById('listadoTarifas');
+
+  listadoTarifas.style.display = 'none';
+  TarifasForm.style.display = 'block';
+}
