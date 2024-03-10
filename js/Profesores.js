@@ -94,6 +94,7 @@ const modificarProfesor = async () => {
     boton3.style.display = 'none';
 
     await verificarProfesores();
+
     if (Estado === 'Encontrado') {
         contenedorProfesores.innerHTML = `
       <form id="MenuModificarEProfesor">
