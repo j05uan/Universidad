@@ -49,21 +49,21 @@ const botonesDepartamento=async()=>{
           <button class="botonsDepartamentos" id="botonmodificarDepartamento" type="button" onclick="modificarDepartamento()">Modificar Departamentos</button>
           <button class="botonsDepartamentos" id="botonmostrarListado" type="button" onclick="mostrarListadoDepartamentos()">Ver Listado de Deprtamentos</button>
           <div id="crearDepartamento"></div>
-          <button id="atras" class="botonsDepartamentos" onclick="volverInicio()">atras</button>
+          <button id="atras1" class="botonsDepartamentos" onclick="volverInicio()">atras</button>
           
       </form>`;
    
       stylesContenedorNuevo(contenedordepartamentos);
-      document.getElementById('botonDepartamentos').style.display='none';
-      document.getElementById('botonEstudiantes').style.display='none';
-      document.getElementById('botonProsfesores').style.display='none';
-      document.getElementById('botonTarifas').style.display='none';
-      document.getElementById('botonAsignaturas').style.display='none';
-      document.getElementById('botonPeriodos').style.display='none';
-      document.getElementById('botonProgramas').style.display='none';
-      document.getElementById('botonCursos').style.display='none';
-      document.getElementById('botonSalones').style.display='none';
-      document.getElementById('botonMatriculas').style.display='none';
+      // document.getElementById('botonDepartamentos').style.display='none';
+      // document.getElementById('botonEstudiantes').style.display='none';
+      // document.getElementById('botonProsfesores').style.display='none';
+      // document.getElementById('botonTarifas').style.display='none';
+      // document.getElementById('botonAsignaturas').style.display='none';
+      // document.getElementById('botonPeriodos').style.display='none';
+      // document.getElementById('botonProgramas').style.display='none';
+      // document.getElementById('botonCursos').style.display='none';
+      // document.getElementById('botonSalones').style.display='none';
+      // document.getElementById('botonMatriculas').style.display='none';
 
 }
 const formularioCrearDEpartamento= async()=>{
@@ -206,6 +206,15 @@ const guardarModificacionDepartamentos = async (valor) => {
   }
 const mostrarListadoDepartamentos = async () => {
     await loaddepartamentos();
+    const boton1= document.getElementById('botoncrearDepartamento');
+    const boton2 = document.getElementById('botonmodificarDepartamento');
+    const boton3 = document.getElementById('botonmostrarListado');
+    const contenedorestu = document.getElementById('crearDepartamento');
+    const atras=document.getElementById('atras1');
+    atras.style.display = 'none';
+    boton1.style.display='none';
+    boton2.style.display='none';
+    boton3.style.display='none';
     const contenedor2 = document.getElementById('crearDepartamento');
     stylesContenedorNuevo(contenedor2);
     const listadoDepartamentos = document.getElementById('crearDepartamento');
@@ -223,7 +232,7 @@ const mostrarListadoDepartamentos = async () => {
 
     const volverButton = document.createElement('button');
     volverButton.textContent = 'Volver al Formulario';
-    volverButton.addEventListener('click', volverFormularioDepartamentos);
+    volverButton.addEventListener('click', botonesDepartamento);
     listadoDepartamentos.appendChild(volverButton);
 }
 

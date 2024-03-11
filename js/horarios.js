@@ -1,15 +1,15 @@
-const listaHorarios = [];
+const listaHorarioss = [];
 
 const loadHorarios = async () => {
     try {
-        listaHorarios.length = 0;
+        listaHorarioss.length = 0;
         const respuesta = await fetch('http://localhost:3000/horarios');
 
         if (!respuesta.ok) {
             throw new Error('Error al cargar Horarios. Estado: ' + respuesta.status);
         }
         const horario = await respuesta.json();
-        listaHorarios.push(...horario);
+        listaHorarioss.push(...horario);
 
     } catch (error) {
         console.error("Error al cargar Horario", error.message);
@@ -41,37 +41,38 @@ const opcionesHorarios = async () => {
     const contenedor2 = document.getElementById('contenidoContenedor');
     contenedor2.innerHTML = `
       <form>
-          <button class="botonsHorarios" id="botoncrearHorario" type="button" onclick="formularioCrearHorario()">Crear Horario</button>
+          <button class="botonsHorarios" id="botoncrearHorario" type="button" onclick="verificarAsignaturas2()">Crear Horario</button>
           <button class="botonsHorarios" id="botonmostrarListado" type="button" onclick="mostrarListadoHorarios()">Ver Listado de Horarios</button>
           <div id="crearHorario"></div>
           <button id="atras" class="atras" onclick="volverInicio()">Atrás</button>
       </form>`;
     stylesContenedorNuevo(contenedor2);
-    limpiarpantalla();
+    return horario
 }
 
-const formularioCrearHorario = async () => {
-    const boton1 = document.getElementById('botoncrearHorario');
-    const boton3 = document.getElementById('botonmostrarListado');
-    const contenedorHorarios = document.getElementById('crearHorario');
-    contenedorHorarios.innerHTML = `
-      <form id="MenuCrearHorario">
-        <h3>Menu Crear Horario</h3>
-        <label for="programaHorario">Programa:</label>
-        <input type="text" id="programaHorario" required>
-        <label for="salonIdHorario">ID del Salón:</label>
-        <input type="text" id="salonIdHorario" required>
-        <label for="profesorHorario">Profesor:</label>
-        <input type="text" id="profesorHorario" required>
-        <button type="button" onclick="crearHorarios()">Crear Horario</button>
-        <button id="atras" class="atras" onclick="opcionesHorarios()">Atrás</button>
-      </form>
-  `;
-    const atras = document.getElementById('atras');
-    atras.style.display = 'none';
-    boton1.style.display = 'none'
-    boton3.style.display = 'none';
-}
+// const formularioCrearHorario = async (valor) => {
+//     const idAsignatura=valor;
+//     const boton1 = document.getElementById('botoncrearHorario');
+//     const boton3 = document.getElementById('botonmostrarListado');
+//     const contenedorHorarios = document.getElementById('crearHorario');
+//     contenedorHorarios.innerHTML = `
+//       <form id="MenuCrearHorario">
+//         <h3>Menu Crear Horario</h3>
+//         <label for="programaHorario">Programa:</label>
+//         <input type="text" id="programaHorario" required>
+//         <label for="salonIdHorario">ID del Salón:</label>
+//         <input type="text" id="salonIdHorario" required>
+//         <label for="profesorHorario">Profesor:</label>
+//         <input type="text" id="profesorHorario" required>
+//         <button type="button" onclick="crearHorarios()">Crear Horario</button>
+//         <button id="atras" class="atras" onclick="opcionesHorarios()">Atrás</button>
+//       </form>
+//   `;
+//     const atras = document.getElementById('atras');
+//     atras.style.display = 'none';
+//     boton1.style.display = 'none'
+//     boton3.style.display = 'none';
+// }
 
 const crearHorario = async () => {
     const programaInput = document.getElementById('programaHorario');
@@ -83,7 +84,7 @@ const crearHorario = async () => {
     const profesor = profesorInput.value;
    
     const nuevoHhorario={
-        Id:length.listahorarios+1,
+        Id:length.listaHorarioss+1,
         programa:"",
         salonId:"",
         Profesro:"",
@@ -124,7 +125,7 @@ const crearHorario = async () => {
     }
     await formularioAgregarAsignaturasAlHorario()
     const nuevoHorario = {
-        Id: listaHorarios.length + 1,
+        Id: listaHorarioss.length + 1,
         programa: programa,
         salonId: salonId,
         Profesor: profesor,
@@ -143,28 +144,12 @@ const crearHorario = async () => {
 }
 
 
-
-
-const formularioAgregarAsignaturasAlHorario=async()=>{
-    const contenedor=document.getElementById('crearHorario');
-    contenedor.innerHTML=`
-    <form id="MenuAgregarAsignaturasAHorario">
-    <h3>Menu Agregar Asignaturas al Horario</h3>
-        <label for="NombreAsignatura"> Nombre de la Asignatura:</label>
-        <input type="text" id="NombreAsignatura" required>
-        <button type="button" onclick="verificardisponibilidad()">Siguiente</button>
-        <button id="atras" class="atras" onclick="opcionesEstudiantes()">Atrás</button>
-        <div id="horario"></div>
-        <div id="agregarhorario"></div>
-    </form>
-  `;
-}
 const verificardisponibilidad=()=>{
     let dispoibles=0;
     let mostrarHorasDisponibles=[];
     let horariosDisponibles=[];
     let permiso=false;
-    for(diccionarios of listahorarios){
+    for(const diccionarios of listaHorarioss){
         for (dias in diccionarios.horario){
             for (let horasdisponibles in dias){
                 if(horasdisponibles===""){
@@ -192,24 +177,56 @@ const verificardisponibilidad=()=>{
     return mostrarHorasDisponibles,permiso;
 }
 
+const verificarAsignaturas2=async(codigo)=>{
+    const contenedor1=document.getElementById('contenidoContenedor');
+    const listaAsignaturas=[];
+    await loadAsignaturas();
+    listaAsignaturas.forEach(Asignatura => {
+        if(Asignatura.codigo===codigo){
+            alert('Ya hay una asignatura con el nombre, ¿deseas Agregar un duplicado?')
+            contenedor1.innerHTML=`
+            <form>
+                <h1>¿Deseas Agregar un duplicado?</h1>
+                <button class="" id="" type="button" onclick="()">Crear Duplicado</button>
+                <button class="" id="" type="button" onclick="()">Ver el Horario de la Asignatura creada</button>
+                <div id="VerHorario"></div>
+                <div id="AsignarHorario"></div>
+                <button id="atras" class="atras" onclick="()">atras</button>
+            </form>`;
+
+        } else if(Asignatura.codigo!==codigo){
+            contenedor1.innerHTML=`
+            <form>
+                <h1>Agregar Horario A las Asignaturas</h1>
+                <button class="botonsTarifas" id="botoncrearTarifa" type="button" onclick="agregarAsignaturasAlHorario()">Continuar</button>
+                <div id="VerHorario"></div>
+                <div id="AsignarHorario"></div>
+                <button id="atras" class="atras" onclick="()">atras</button>
+            </form>`;
+        }
+        
+    });
+
+
+}
 const agregarAsignaturasAlHorario=async(valor)=>{
-    let diccionarioAsignaturasHorarios={Asignaturalunes68:"",Asignaturalunes810:"",Asignaturalunes1012:"",
+    let diccionarioAsignaturasHorarios={Id:"",horario:{Asignaturalunes68:"",Asignaturalunes810:"",Asignaturalunes1012:"",
     Asignaturalunes1214:"", Asignaturalunes1416:"", Asignaturalunes1618:"", Asignaturalunes1820:"", Asignaturamartes68:"",
     Asignaturamartes810:"", Asignaturamartes1012:"", Asignaturamartes1214:"", Asignaturamartes1416:"", Asignaturamartes1618:"",
     Asignaturamartes1820:"", Asignaturamiercoles68:"", Asignaturamiercoles810:"", Asignaturamiercoles1012:"", Asignaturamiercoles1214:"",
     Asignaturamiercoles1416:"", Asignaturamiercoles1618:"",Asignaturamiercoles1820 :"", Asignaturajueves68:"", Asignaturajueves810:"",
     Asignaturajueves1012:"", Asignaturajueves1214:"", Asignaturajueves1416:"", Asignaturajueves1618:"",
     Asignaturajueves1820 :"", Asignaturaviernes68:"", Asignaturaviernes810:"", Asignaturaviernes1012:"", Asignaturaviernes1214:"",
-    Asignaturaviernes1416 :"", Asignaturaviernes1618:"",Asignaturaviernes1820:"" };
+    Asignaturaviernes1416 :"", Asignaturaviernes1618:"",Asignaturaviernes1820:"" }};
     
     let opciones=[];
-    diccionarioAsignaturasHorarios.forEach(Asignatura => {
+    diccionarioAsignaturasHorarios.forEach(horaLibre => {
         if(Asignatura===""){
-            opciones.push(Asignatura)
+            opciones.push(horaLibre)
         }
     });
     await loadAsignaturas();
-    const contenedor1 =document.getElementById('horario');
+    const contenedor1 =document.getElementById('VerHorario');
     contenedor1.innerHTML=`
     <div id="HorariosDisponibles">
     <h3>Horarios Disponibles</h3>
@@ -387,17 +404,18 @@ const agregarAsignaturasAlHorario=async(valor)=>{
 <section>
     </div>
   `
-    const contenedor2=document.getElementById('agregarhorario');
+    const contenedor2=document.getElementById('AsignarHorario');
     contenedor2.innerHTML=`
     <form id="MenuAgregarAsignaturasAHorario">
     <h3>Menu Agregar Asignaturas al Horario</h3>
         <label for="horarioSeleccionado"> Selecciona una opcion:</label>
         <select id="miSelect">
         <option value="opcion1">Opción 1</option>
-        <button type="button" onclick="verificardisponibilidad()">Agregar</button>
-        <button id="atras" class="atras" onclick="opcionesEstudiantes()">Atrás</button>
+        <button type="button" onclick="()">Agregar</button>
+        <button id="atras" class="atras" onclick="()">Atrás</button>
     </form>
   `
+  generarOpciones()
 }
 function generarOpciones(opciones) {
         let select = document.getElementById('miSelect');

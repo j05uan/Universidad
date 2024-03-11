@@ -78,9 +78,7 @@ const formularioCrearAsignatura = async () => {
         <input type="number" id="profesorAsignatura" required>
         <label for="programaAsignatura">ID del Programa:</label>
         <input type="number" id="programaAsignatura" required>
-        <label for="horarioAsignatura">Horarios:</label>
-        <input type="number" id="horarioAsignatura" required>
-        <button type="button" onclick="crearAsignaturas()">Crear Asignatura</button>
+        <button type="button" onclick="opcionesHorarios()">Agregar Horario</button>
         <button id="atras" class="atras" onclick="botonesAsignatura()">Atrás</button>
       </form>
   `;
@@ -107,7 +105,7 @@ const crearAsignaturas = async () => {
     const cuposDisponibles = parseInt(cuposInput.value);
     const IDprofe = parseInt(profeInput.value);
     const Idprograma = parseInt(programaInput.value);
-
+    
     const nuevaAsignatura = {
         id: listaAsignaturas.length + 1,
         curso_id: idcurso, 

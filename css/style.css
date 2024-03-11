@@ -332,4 +332,13 @@ button:hover{
     grid-template-rows: repeat(3,1fr);
     
 }
+#VerHorario{
+    width: 55%;
+    height: auto;
 
+}
+
+#AsignarHorario{
+    width: 40%;
+    height: auto;
+}

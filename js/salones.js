@@ -79,7 +79,6 @@ const formularioCrearSalon = async () => {
   boton1.style.display = 'none';
   boton2.style.display = 'none';
   boton3.style.display = 'none';
-  await crearSalones();
 }
 
 const crearSalones = async () => {
