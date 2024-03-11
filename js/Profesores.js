@@ -1,14 +1,57 @@
 
 
+const listaProfesores = [];
+
+const loadProfesores = async () => {
+    try {
+        listaProfesores.length = 0;
+        const respuesta = await fetch('http://localhost:3000/profesores');
+
+        if (!respuesta.ok) {
+            throw new Error('Error al cargar Profesores. Estado: ' + respuesta.status);
+        }
+        const Profesor = await respuesta.json();
+        listaProfesores.push(...Profesor);
+
+    } catch (error) {
+        console.error("Error al cargar Profesor", error.message);
+    }
+}
+
+const guardarProfesor = async (nuevoProfesor) => {
+    try {
+
+        const respuesta = await fetch('http://localhost:3000/profesores', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(nuevoProfesor),
+        });
+
+        if (!respuesta.ok) {
+            throw new Error('Error al crear el profesor. Estado: ' + respuesta.status);
+        }
+        const ProfesorCreado = await respuesta.json();
+
+
+        console.log('Profesor creado:', ProfesorCreado);
+
+    } catch (error) {
+        console.error("Error al cargar Profesor", error.message);
+    }
+}
 
 const botonesProfesor=async()=>{
-    const contenedor4 =document.getElementById('OpcionesProfesores');
+    const opcion3 =document.getElementById('atras3')
+    const contenedor4 =document.getElementById('contenidoContenedor');
     contenedor4.innerHTML = `
       <form>
           <button class="botonsProfesor" id="botoncrearProfesor" type="button" onclick="formularioCrearProfesor()">Crear Profesores</button>
-          <button class="botonsProfesor" id="botonmodificarProfesor" type="button" onclick="()">Modificar Profesores</button>
-          <button class="botonsProfesor" id="botonmostrarListado" type="button" onclick="mostrarListado()">Ver Listado de Profesores</button>
-          <div id="profesoress"></div>
+          <button class="botonsProfesor" id="botonmodificarProfesor" type="button" onclick="modificarProfesor()">Modificar Profesores</button>
+          <button class="botonsProfesor" id="botonmostrarListado" type="button" onclick="mostrarListadoProfesores()">Ver Listado de Profesores</button>
+          <div id="crearProfesor"></div>
+          <div id="listadoProfesores"></div>
           <button id="atras" class="atras" onclick="volverInicio()">atras</button>
           
       </form>
@@ -16,6 +59,7 @@ const botonesProfesor=async()=>{
 
   stylesContenedorNuevo(contenedor4);
   limpiarpantalla();
+  opcion3.style.display='none'
    
 }
 
@@ -23,7 +67,7 @@ const formularioCrearProfesor = async () => {
     const boton1 = document.getElementById('botoncrearProfesor');
     const boton2 = document.getElementById('botonmodificarProfesor');
     const boton3 = document.getElementById('botonmostrarListado');
-    const contenedorProfesores = document.getElementById('profesoress');
+    const contenedorProfesores = document.getElementById('contenidoContenedor');
     contenedorProfesores.innerHTML = `
       <form id="MenuCrearProfesor">
         <h3>Menu Crear Profesores</h3>
@@ -37,7 +81,8 @@ const formularioCrearProfesor = async () => {
         <input type="text" id="apellidoProfesor" required>
         <label for="departamentoId">ID del Departamento:</label>
         <input type="number" id="departamentoId" required>
-        <button id="atras" class="atras" onclick="botonesProfesor()">atras</button>
+        <button type="button" onclick="crearProfesores()">Crear Profesor</button>
+        <button id="atrasprofes" class="atras" onclick="botonesProfesor()">atras</button>
       </form>
   `;
     const atras = document.getElementById('atras');
@@ -45,7 +90,6 @@ const formularioCrearProfesor = async () => {
     boton1.style.display = 'none';
     boton2.style.display = 'none';
     boton3.style.display = 'none';
-    await crearProfesores();
 }
 
 const crearProfesores = async () => {
@@ -70,8 +114,8 @@ const crearProfesores = async () => {
         departamento_id: departamentoId,
     }
 
-    await guardar(nuevo);
-    await loadEstudiantes();
+    await guardarProfesor(nuevo);
+    await loadProfesores();
 
     tipoDocumentoInput.value = '';
     numeroDocumentoInput.value = '';
@@ -88,7 +132,7 @@ const modificarProfesor = async () => {
     const boton1 = document.getElementById('botoncrearProfesor');
     const boton2 = document.getElementById('botonmodificarProfesor');
     const boton3 = document.getElementById('botonmostrarListado');
-    const contenedorProfesores = document.getElementById('crearEProfesor');
+    const contenedorProfesores = document.getElementById('crearProfesor');
     boton1.style.display = 'none';
     boton2.style.display = 'none';
     boton3.style.display = 'none';

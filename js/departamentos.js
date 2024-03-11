@@ -42,15 +42,15 @@ const guardarDEpartamentos= async(nuevoDepartamento)=>{
 }
 const botonesDepartamento=async()=>{
   
-    const contenedordepartamentos =document.getElementById('OpcionesDepartamentos');
+    const contenedordepartamentos =document.getElementById('contenidoContenedor');
     contenedordepartamentos.innerHTML = `
       <form>
-          <button class="botonsDepartamentos" id="botoncrearDepartamento"type="button" onclick="formularioCrearDEpartamento()">Crear Departamentos</button>
-          <button class="botonsDepartamentos" id="botonmodificarDepartamento" type="button" onclick="()">Modificar Departamentos</button>
-          <button class="botonsDepartamentos" id="botonmostrarListado" type="button" onclick="mostrarListado()">Ver Listado de Deprtamentos</button>
+          <button class="botonsEstudiantes" id="botoncrearDepartamento"type="button" onclick="formularioCrearDEpartamento()">Crear Departamentos</button>
+          <button class="botonsEstudiantes" id="botonmodificarDepartamento" type="button" onclick="modificarDepartamento()">Modificar Departamentos</button>
+          <button class="botonsEstudiantes" id="botonmostrarListado" type="button" onclick="mostrarListadoDepartamentos()">Ver Listado de Deprtamentos</button>
           <div id="crearDepartamento"></div>
           <div id="listadoDepartamentos"></div>
-          <button id="atras" class="atras" onclick="volverInicio()">atras</button>
+          <button id="atras" class="botonsEstudiantes" onclick="volverInicio()">atras</button>
           
       </form>`;
    
@@ -63,15 +63,15 @@ const formularioCrearDEpartamento= async()=>{
     const boton1= document.getElementById('botoncrearDepartamento');
     const boton2 = document.getElementById('botonmodificarDepartamento')
     const boton3 = document.getElementById('botonmostrarListado')
-    const contenedorestu = document.getElementById('departamentoss');
+    const contenedorestu = document.getElementById('contenidoContenedor');
     contenedorestu.innerHTML = `
       <form id="MenuCrearDepartamento">
         <h3>Menu Crear Departamentos</h3>
-        <label for="identificacionDepartamento">Numero de Identificacion del Departamento:</label>
-        <input type="number" id="identificacionDepartamento" required>
         <label for="nombreDepartamento">Nombre del Departamento:</label>
         <input type="text" id="nombreDepartamento" required>
-        <button id="atras" class="atras" onclick="botonesdepartamento()">atras</button>
+        <button type="button" onclick="creardepartamentos()">Crear Departamentos</button>    
+        <button id="atras1" class="atras" onclick="botonesDepartamento()">atras</button>
+
         
       </form>
   `;
@@ -80,41 +80,30 @@ const formularioCrearDEpartamento= async()=>{
    boton1.style.display='none';
    boton2.style.display='none';
    boton3.style.display='none' ;
-   await creardepartamentos();
-   
+   ;
 }
 
 const creardepartamentos= async ()=>{
     const nombreInput=document.getElementById('nombreDepartamento');
-    const IdInput=document.getElementById('identificacionDepartamento')
-
-    const nombre=nombreInput.value;
-    const Id=IdInput.value;
-
+    const nombre=nombreInput.value; 
     const nuevo={
         id:listadepartamentos.length+1,
-        identificaion:Id,
         nombre:nombre,
     }
-
-  
-    await guardar(nuevo);
-    await loadEstudiantes();
-    
+    await guardarDEpartamentos(nuevo);
+    await loadEstudiantes(); 
     IdInput.value='';
-    nombreInput.value='';
-
     alert('Departamento creado con éxito!');
-
     return nuevo;
-
 }
 
 const modificarDepartamento =async()=>{
     const boton1= document.getElementById('botoncrearDepartamento');
     const boton2 = document.getElementById('botonmodificarDepartamento');
     const boton3 = document.getElementById('botonmostrarListado');
-    const contenedorestu = document.getElementById('crearEDepartamento');
+    const contenedorestu = document.getElementById('crearDepartamento');
+    const atras=document.getElementById('atras1');
+    atras.style.display = 'none';
     boton1.style.display='none';
     boton2.style.display='none';
     boton3.style.display='none';
@@ -125,8 +114,7 @@ const modificarDepartamento =async()=>{
       <form id="MenuModificarEDepartamento">
         <h3>Menu Modificar EDepartamentos</h3>
         <h3>Seleccione el item que desea modificar</h3>
-        
-        <button for="identificacionEDepartamento" onclick="modificarIdentificacionDepartamento()">Numero de Identificacion del Departamento:</button>
+
         
         <button for="nombreEDepartamento" onclick="modificarNombreDepartamento()">Nombre del Departamento:</button>
         
@@ -161,23 +149,6 @@ const verificarDepartamentos= async=()=>{
 
     return [Estado, Departamentos]
 }
-const modificarIdentificacionDepartamento=()=>{
-    const contenedorestu = document.getElementById('Departamentos');
-    contenedorestu.innerHTML = `
-    <form id="MenuModificarDepartamento">
-    <h3>Menu modificar Identificacion</h3>
-    <label for="identificacionDepartamento">Numero de Identificacion del Departamento:</label>
-    <input type="number" id="identificacionDepartamento" required>
-    
-    <button type="button" onclick="GuardarModificionDepartamento()">Guardar Modificion Departamento</button>
-    
-    
-        
-    <button id="atras" class="atras" onclick="modificarDepartamento()">atras</button>
-    </form>
-
-    `;
-}
 const modificarNombreDepartamento=()=>{
     const contenedorestu = document.getElementById('crearEstudiante');
     contenedorestu.innerHTML = `
@@ -198,10 +169,11 @@ const mostrarListadoDepartamentos = async () => {
     await loadEstudiantes();
     const contenedor2 = document.getElementById('OpcionesDepartamentos');
     stylesContenedorNuevo(contenedor2);
-    limpiarpantalla();
     const listadoDepartamentos = document.getElementById('listadoDepartamentos');
     listadoDepartamentos.style.display = 'flex';
     
+    const ul = document.createElement("ul");
+
     for (const Departamento of listadepartamentos) {
         const li = document.createElement('li');
         li.textContent = `ID: ${Departamento.id}, identificaion: ${Departamento.identificaion}, nombre: ${Departamento.nombre}`;

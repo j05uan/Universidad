@@ -44,34 +44,32 @@ const guardarEstudiante= async(nuevoEstudiante)=>{
 
 
 const opcionesEstudiantes= async ()=>{
-    
+   
     const contenedor2 = document.getElementById('OpcionesEstudiantes');
     contenedor2.innerHTML = `
       <form>
           <button class="botonsEstudiantes" id="botoncrearEstudinte"type="button" onclick="formularioCrearEstudiante()">Crear Estudinte</button>
-          <button class="botonsEstudiantes" id="botonmodificarEstudinte" type="button" onclick="modificarEstudinte()">Modificar Estudinte</button>
+          <button class="botonsEstudiantes" id="botonmodificarEstudinte" type="button" onclick="modificarEstudiante()">Modificar Estudinte</button>
           <button class="botonsEstudiantes" id="botonmostrarListado" type="button" onclick="mostrarListadoEstudiantes()">Ver Listado de Estudintes</button>
           <div id="crearEstudiante"></div>
           <div id="listadoEstudiantes"></div>
-          <button id="atras" class="atras" onclick="volverInicio()">atras</button>
+          <button id="atras1" class="atras" onclick="volverInicio()">atras</button>
           
       </form>`;
     stylesContenedorNuevo(contenedor2);
     limpiarpantalla();
-
+    
 
 }
 
 const formularioCrearEstudiante = async () => {
-    const boton1 = document.getElementById('botoncrearEstudiante');
-    const boton2 = document.getElementById('botonmodificarEstudiante');
+    const boton1 = document.getElementById('botoncrearEstudinte');
+    const boton2 = document.getElementById('botonmodificarEstudinte');
     const boton3 = document.getElementById('botonmostrarListado');
     const contenedorEstudiantes = document.getElementById('crearEstudiante');
     contenedorEstudiantes.innerHTML = `
       <form id="MenuCrearEstudiante">
         <h3>Menu Crear Estudiantes</h3>
-        <label for="identificacionEstudiante">Número de Identificación del Estudiante:</label>
-        <input type="number" id="identificacionEstudiante" required>
         <label for="nombreEstudiante">Nombre del Estudiante:</label>
         <input type="text" id="nombreEstudiante" required>
         <label for="apellidoEstudiante">Apellido del Estudiante:</label>
@@ -96,7 +94,7 @@ const formularioCrearEstudiante = async () => {
         <button id="atras" class="atras" onclick="opcionesEstudiantes()">Atrás</button>
       </form>
   `;
-    const atras = document.getElementById('atras');
+    const atras = document.getElementById('atras1');
     atras.style.display = 'none';
     boton1.style.display = 'none';
     boton2.style.display = 'none';
@@ -104,6 +102,7 @@ const formularioCrearEstudiante = async () => {
 }
 
 const crearEstudiante = async () => {
+
     const nombreInput = document.getElementById('nombreEstudiante');
     const apellidoInput = document.getElementById('apellidoEstudiante');
     const tipoDocumentoInput = document.getElementById('tipoDocumentoEstudiante');
@@ -115,7 +114,7 @@ const crearEstudiante = async () => {
     const sexoInput = document.getElementById('sexoEstudiante');
     const programaInput = document.getElementById('programaEstudiante');
 
-    const id = idInput.value;
+    // const id = idInput.value;
     const nombre = nombreInput.value;
     const apellido = apellidoInput.value;
     const tipoDocumento = tipoDocumentoInput.value;
@@ -144,7 +143,6 @@ const crearEstudiante = async () => {
     await guardarEstudiante(nuevoEstudiante);
     await loadEstudiantes();
 
-    idInput.value = '';
     nombreInput.value = '';
     apellidoInput.value = '';
     tipoDocumentoInput.value = '';
@@ -162,13 +160,15 @@ const crearEstudiante = async () => {
 }
 
 const modificarEstudiante = async () => {
-    const boton1 = document.getElementById('botoncrearEstudiante');
-    const boton2 = document.getElementById('botonmodificarEstudiante');
+    const boton1 = document.getElementById('botoncrearEstudinte');
+    const boton2 = document.getElementById('botonmodificarEstudinte');
     const boton3 = document.getElementById('botonmostrarListado');
+    const atras1= document.getElementById('atras1')
     const contenedorEstudiantes = document.getElementById('crearEstudiante');
     boton1.style.display = 'none';
     boton2.style.display = 'none';
     boton3.style.display = 'none';
+    atras1.style.display = 'none';
 
     verificarEstudiantes();
     if (Estado === 'Encontrado') {
@@ -188,8 +188,7 @@ const modificarEstudiante = async () => {
         <button for="fechaNacimientoEstudiante" onclick="modificarFechaNacimiento()">Fecha de Nacimiento del Estudiante:</button>
         <button for="sexoEstudiante" onclick="modificarSexo()">Sexo del Estudiante:</button>
         <button for="programaEstudiante" onclick="modificarPrograma()">ID del Programa:</button>
-        
-        <button id="atras" class="atras" onclick="opcionesEstudiantes()">Atrás</button>
+        <button id="atras2" class="atras" onclick="opcionesEstudiantes()">Atrás</button>
         
       </form>
   `;
@@ -206,6 +205,8 @@ const verificarEstudiantes = async () => {
         <h3>Menu Modificar Estudiante</h3>
         <label for="identificacionEstudiante">Número de Identificación del Estudiante:</label>
         <input type="number" id="identificacionEstudiante" required>
+        <button id="atras2" class="atras" onclick="opcionesEstudiantes()">Atrás</button>
+        
       </form>
   `;
     for (const estudiante of listaEstudiantes) {
@@ -217,7 +218,7 @@ const verificarEstudiantes = async () => {
         }
     }
 
-    return [Estado, estudiante];
+    return [Estado];
 }
 
 const modificarIdentificacion = () => {
@@ -228,7 +229,7 @@ const modificarIdentificacion = () => {
     <label for="identificacionEstudiante">Número de Identificación del Estudiante:</label>
     <input type="number" id="identificacionEstudiante" required>
     <button type="button" onclick="guardarModificacionEstudiante()">Guardar Modificación Estudiante</button>
-    <button id="atras" class="atras" onclick="opcionesEstudiantes()">Atrás</button>
+    <button id="atras3" class="atras" onclick="opcionesEstudiantes()">Atrás</button>
     </form>`;
 }
 
@@ -240,7 +241,7 @@ const modificarNombre = () => {
     <label for="nombreEstudiante">Nombre del Estudiante:</label>
     <input type="text" id="nombreEstudiante" required>
     <button type="button" onclick="guardarModificacionEstudiante()">Guardar Modificación Estudiante</button>
-    <button id="atras" class="atras" onclick="opcionesEstudiantes()">Atrás</button>
+    <button id="atras3" class="atras" onclick="opcionesEstudiantes()">Atrás</button>
     </form>`;
 }
 
@@ -252,21 +253,34 @@ const modificarApellido = () => {
     <label for="apellidoEstudiante">Apellido del Estudiante:</label>
     <input type="text" id="apellidoEstudiante" required>
     <button type="button" onclick="guardarModificacionEstudiante()">Guardar Modificación Estudiante</button>
-    <button id="atras" class="atras" onclick="opcionesEstudiantes()">Atrás</button>
+    <button id="atras3" class="atras" onclick="opcionesEstudiantes()">Atrás</button>
     </form>`;
 };
 
 const  mostrarListadoEstudiantes=async()=>{
     await loadEstudiantes();
-    const contenedor2 = document.getElementById('OpcionesEstudiantes');
+    const boton1 = document.getElementById('botoncrearEstudinte');
+    const boton2 = document.getElementById('botonmodificarEstudinte');
+    const boton3 = document.getElementById('botonmostrarListado');
+    const contenedor2 = document.getElementById('OpcionesEstudiantes');const atras = document.getElementById('atras1');
+    atras.style.display = 'none';
+    boton1.style.display = 'none';
+    boton2.style.display = 'none';
+    boton3.style.display = 'none';
     stylesContenedorNuevo(contenedor2);
-    limpiarpantalla();
-    const listadoEstudiantes= document.getElementById('listadoEstudiantes');
-    listaEstudiantes.style.display='flex';
     
+    const listadoEstudiantes= document.getElementById('listadoEstudiantes');
+    console.log(listadoEstudiantes);
+    listadoEstudiantes.style.display='flex';
+    
+    const ul = document.createElement("ul");
+    
+
     for(const Estudiante of listaEstudiantes){
         const li=document.createElement('li');
-        li.textContent= `ID: ${Estudiante.id}, Nombre: ${Estudiante.nombre}, Edad: ${Estudiante.edad}, Email: ${Estudiante.email}`;
+        li.textContent= `nombre: ${Estudiante.nombre}, apellido: ${Estudiante.apellido}, tipo_documento: ${Estudiante.tipo_documento}, numero_documento: ${Estudiante.numero_documento}
+        , ciudad_residencia: ${Estudiante.ciudad_residencia}, direccion: ${Estudiante.direccion}, telefono: ${Estudiante.telefono}, fecha_nacimiento: ${Estudiante.fecha_nacimiento}, sexo: ${Estudiante.numero_documento}
+        , programa_id: ${Estudiante.programa_id}`;
         ul.appendChild(li);
     }
     listadoEstudiantes.innerHTML='';
@@ -274,17 +288,17 @@ const  mostrarListadoEstudiantes=async()=>{
 
     const volverButton=document.createElement('button');
     volverButton.textContent='Volver al Formulario';
-    volverButton.addEventListener('click',volverFormulariEstudiantes);
+    volverButton.addEventListener('click',opcionesEstudiantes);
     listadoEstudiantes.appendChild(volverButton);
 }
 
-const volverFormulariEstudiantes=()=>{
-    const EstudiantesForm=document.getElementById('crearEstudiante');
-    const listadoEstudiantes = document.getElementById('listadoEstudiantes');
+// const volverFormulariEstudiantes=()=>{
+//     const EstudiantesForm=document.getElementById('crearEstudiante');
+//     const listadoEstudiantes = document.getElementById('listadoEstudiantes');
 
-    listadoEstudiantes.style.display='none';
-    EstudiantesForm.style.display='block';
-}
+//     listadoEstudiantes.style.display='none';
+//     EstudiantesForm.style.display='block';
+// }
 
 
 

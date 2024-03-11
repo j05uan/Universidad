@@ -1,6 +1,48 @@
+const listaProgramas = [];
+
+const loadProgramas = async () => {
+    try {
+        listaProgramas.length = 0;
+        const respuesta = await fetch('http://localhost:3000/programas');
+
+        if (!respuesta.ok) {
+            throw new Error('Error al cargar Programas. Estado: ' + respuesta.status);
+        }
+        const Programa = await respuesta.json();
+        listaProgramas.push(...Programa);
+
+    } catch (error) {
+        console.error("Error al cargar Programa", error.message);
+    }
+}
+
+const guardarPrograma = async (nuevoPrograma) => {
+    try {
+
+        const respuesta = await fetch('http://localhost:3000/programas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(nuevoPrograma),
+        });
+
+        if (!respuesta.ok) {
+            throw new Error('Error al crear el programa. Estado: ' + respuesta.status);
+        }
+        const ProgramaCreado = await respuesta.json();
+
+
+        console.log('Programa creado:', ProgramaCreado);
+
+    } catch (error) {
+        console.error("Error al cargar Programa", error.message);
+    }
+}
+
 const botonesProgramas = async () => {
 
-    const contenedor2 = document.getElementById('OpcionesProgramas');
+    const contenedor2 = document.getElementById('contenidoContenedor');
     contenedor2.innerHTML = `
       <form>
           <button class="botonsProgramas" id="botoncrearPrograma" type="button" onclick="formularioCrearPrograma()">Crear Programas</button>

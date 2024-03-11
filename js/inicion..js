@@ -10,11 +10,15 @@ const estudiantes=()=>{
             <label for="UsuarioEstudiante">Ingrese Usuario:</label>
             <input type="text" id="UsuarioEstudiante" required>
             <label for="contraseñaEstudiante">Ingrese Contraseña:</label>
-            <input type="text" id="contraseñaEstudiante" required>
+            <input type="password" id="contraseñaEstudiante" required>
             <button type="button" onclick="verificaringreso()">Ingresar</button>
         
     </form>`;
-
+    document.getElementById("contraseñaEstudiante").addEventListener("keypress",(event) =>{
+        if(event.key === "Enter"){
+            verificaringreso()
+        }
+    })
     boton2.style.display='none';
     boton3.style.display='none';
     boton1.style.display='none';
@@ -29,11 +33,15 @@ const verificaringreso = async () => {
     const contraseña = document.getElementById('contraseñaEstudiante').value;
     const Us = 'Juan López';
     const con = 'juancrackencampus';
+    const us2= 'abc';
+    const con2='123';
 
     if (usuario === Us && contraseña === con) {
         alert('Usuario correcto');
         await inicio();
-    } else {
+    } else if (usuario === us2 && contraseña === con2) {
+        alert('Usuario correcto');
+        await inicio()} else{
         alert('Usuario o Contraseña incorrecto');
     }
 };

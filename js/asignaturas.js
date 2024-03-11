@@ -17,6 +17,7 @@ const loadAsignaturas=async()=>{
 }
 
 
+
 const guardarAsignatura= async(nuevoAsignatura)=>{
     try{
 
@@ -42,7 +43,8 @@ const guardarAsignatura= async(nuevoAsignatura)=>{
 }
 
 const botonesAsignatura = async () => {
-    const contenedorAsignaturas = document.getElementById('OpcionesAsignaturas');
+    
+    const contenedorAsignaturas = document.getElementById('opcionesAsignaturas');
     contenedorAsignaturas.innerHTML = `
       <form>
           <button class="botonsAsignaturas" id="botoncrearAsignatura" type="button" onclick="formularioCrearAsignatura()">Crear Asignaturas</button>
@@ -52,9 +54,10 @@ const botonesAsignatura = async () => {
           <div id="listadoAsignaturas"></div>
           <button id="atras" class="atras" onclick="volverInicio()">atras</button>
       </form>`;
-
-    stylesContenedorNuevo(contenedorAsignaturas);
+    
     limpiarpantalla();
+    stylesContenedorNuevo(contenedorAsignaturas);
+    
 }
 
 const formularioCrearAsignatura = async () => {
@@ -136,7 +139,7 @@ const modificarAsignatura = async () => {
     const boton1 = document.getElementById('botoncrearAsignatura');
     const boton2 = document.getElementById('botonmodificarAsignatura');
     const boton3 = document.getElementById('botonmostrarListado');
-    const contenedorAsignaturas = document.getElementById('crearAsignatura');
+    const contenedorAsignaturas = document.getElementById('contenidoContenedor');
     boton1.style.display = 'none';
     boton2.style.display = 'none';
     boton3.style.display = 'none';
@@ -162,7 +165,7 @@ const modificarAsignatura = async () => {
 
 const verificarAsignaturas = async () => {
     let Estado = '';
-    const codigo = document.getElementById('codigoAsignatura').value;
+    const codigo = document.getElementById('codigoAsignatura');
     const contenedorAsignaturas = document.getElementById('crearAsignatura');
     contenedorAsignaturas.innerHTML = `
       <form id="MenuModificarAsignatura">
@@ -191,7 +194,7 @@ const modificarCodigoAsignatura = () => {
     <h3>Menu Modificar Código de la Asignatura</h3>
     <label for="codigoAsignatura">Código de la Asignatura:</label>
     <input type="text" id="codigoAsignatura" required>
-    <button type="button" onclick="GuardarModificionAsignatura()">Guardar Modificación del Código de la Asignatura</button>
+    <button type="button" onclick="guardarModificacionAsignaturas()">Guardar Modificación del Código de la Asignatura</button>
     <button id="atras" class="atras" onclick="modificarAsignatura()">Atrás</button>
     </form>`;
 }
@@ -203,7 +206,7 @@ const modificarCreditosAsignatura = () => {
     <h3>Menu Modificar Créditos de la Asignatura</h3>
     <label for="creditosAsignatura">Créditos de la Asignatura:</label>
     <input type="number" id="creditosAsignatura" required>
-    <button type="button" onclick="GuardarModificionAsignatura()">Guardar Modificación de Créditos de la Asignatura</button>
+    <button type="button" onclick="guardarModificacionAsignaturas()">Guardar Modificación de Créditos de la Asignatura</button>
     <button id="atras" class="atras" onclick="modificarAsignatura()">Atrás</button>
     </form>`;
 }
@@ -215,7 +218,7 @@ const modificarCuposAsignatura = () => {
     <h3>Menu Modificar Cupos Disponibles de la Asignatura</h3>
     <label for="cuposAsignatura">Cupos Disponibles de la Asignatura:</label>
     <input type="number" id="cuposAsignatura" required>
-    <button type="button" onclick="GuardarModificionAsignatura()">Guardar Modificación de Cupos Disponibles de la Asignatura</button>
+    <button type="button" onclick="guardarModificacionAsignaturas()">Guardar Modificación de Cupos Disponibles de la Asignatura</button>
     <button id="atras" class="atras" onclick="modificarAsignatura()">Atrás</button>
     </form>`;
 }
@@ -226,7 +229,7 @@ const modificarCursoAsignatura = () => {
     <h3>Menu Modificar Curso de la Asignatura</h3>
     <label for="cursoAsignatura">Curso de la Asignatura:</label>
     <input type="number" id="cursoAsignatura" required>
-    <button type="button" onclick="GuardarModificionAsignatura()">Guardar Modificación del Curso de la Asignatura</button>
+    <button type="button" onclick="guardarModificacionAsignaturas()">Guardar Modificación del Curso de la Asignatura</button>
     <button id="atras" class="atras" onclick="modificarAsignatura()">Atrás</button>
     </form>`;
 }
@@ -238,7 +241,7 @@ const modificarProfesorAsignatura = () => {
     <h3>Menu Modificar Profesor de la Asignatura</h3>
     <label for="profesorAsignatura">Profesor de la Asignatura:</label>
     <input type="number" id="profesorAsignatura" required>
-    <button type="button" onclick="GuardarModificionAsignatura()">Guardar Modificación del Profesor de la Asignatura</button>
+    <button type="button" onclick="guardarModificacionAsignaturas()">Guardar Modificación del Profesor de la Asignatura</button>
     <button id="atras" class="atras" onclick="modificarAsignatura()">Atrás</button>
     </form>`;
 }
@@ -250,7 +253,7 @@ const modificarProgramaAsignatura = () => {
     <h3>Menu Modificar Programa de la Asignatura</h3>
     <label for="programaAsignatura">Programa de la Asignatura:</label>
     <input type="number" id="programaAsignatura" required>
-    <button type="button" onclick="GuardarModificionAsignatura()">Guardar Modificación del Programa de la Asignatura</button>
+    <button type="button" onclick="guardarModificacionAsignaturas()">Guardar Modificación del Programa de la Asignatura</button>
     <button id="atras" class="atras" onclick="modificarAsignatura()">Atrás</button>
     </form>`;
 }
@@ -261,7 +264,7 @@ const modificarHorarioAsignatura = () => {
     <form id="MenuModificarAsignatura">
     <h3>Menu Modificar Horario de la Asignatura</h3>
     <!-- Aquí debes agregar campos para editar los horarios -->
-    <button type="button" onclick="GuardarModificionAsignatura()">Guardar Modificación del Horario de la Asignatura</button>
+    <button type="button" onclick="guardarModificacionAsignaturas()">Guardar Modificación del Horario de la Asignatura</button>
     <button id="atras" class="atras" onclick="modificarAsignatura()">Atrás</button>
     </form>`;
 }
@@ -297,70 +300,68 @@ const volverFormulario=()=>{
     
 }
 
-const verificarProfesores=()=>{
-  
-}
 
 
 
-// const guardarModificacionCurso = async (valor) => {
-//     const newcodigo = document.getElementById('codigoAsignatura').value;
-//     const newcreditos = document.getElementById('creditosAsignatura').value;
-//     const newcupos = document.getElementById('cuposAsignatura').value;
-//     const newIdcurso = document.getElementById('cursoAsignatura').value;
-//     const newprofe = document.getElementById('profesorAsignatura').value;
-//     const newprograma = document.getElementById('programaAsignatura').value;
-//     const newhorarios = document.getElementById('').value;
-//     const nombreverificacion = document.getElementById('codigoAsignatura').value;
-//     let newInput = valor;
+
+const guardarModificacionAsignaturas = async (valor) => {
+    const newcodigo = document.getElementById('codigoAsignatura').value;
+    const newcreditos = document.getElementById('creditosAsignatura').value;
+    const newcupos = document.getElementById('cuposAsignatura').value;
+    const newIdcurso = document.getElementById('cursoAsignatura').value;
+    const newprofe = document.getElementById('profesorAsignatura').value;
+    const newprograma = document.getElementById('programaAsignatura').value;
+    const newhorarios = document.getElementById('').value;
+    const nombreverificacion = document.getElementById('codigoAsignatura').value;
+    let newInput = valor;
   
-//     listaasignaturas.forEach(asignatura => {
-//       if (asignatura.nombre === nombreverificacion) {
-//         if (newInput === newcodigo) {
-//           asignatura.nombre = newcodigo;
-//         } else if (newInput === newcreditos) {
-//           asignatura.codigo = newcreditos;
-//         } else if (newInput === newcupos) {
-//           asignatura.guia_catedra = newcupos;
-//         }else if (newInput === newIdcurso) {
-//             asignatura.guia_catedra = newIdcurso;
-//         }else if (newInput === newprofe) {
-//             asignatura.guia_catedra = newprofe;
-//         }else if (newInput === newprograma) {
-//             asignatura.guia_catedra = newprograma;
-//         }else if (newInput === newhorarios) {
-//             asignatura.guia_catedra = newhorarios;
-//         }
+    listaasignaturas.forEach(asignatura => {
+      if (asignatura.nombre === nombreverificacion) {
+        if (newInput === newcodigo) {
+          asignatura.nombre = newcodigo;
+        } else if (newInput === newcreditos) {
+          asignatura.codigo = newcreditos;
+        } else if (newInput === newcupos) {
+          asignatura.guia_catedra = newcupos;
+        }else if (newInput === newIdcurso) {
+            asignatura.guia_catedra = newIdcurso;
+        }else if (newInput === newprofe) {
+            asignatura.guia_catedra = newprofe;
+        }else if (newInput === newprograma) {
+            asignatura.guia_catedra = newprograma;
+        }else if (newInput === newhorarios) {
+            asignatura.guia_catedra = newhorarios;
+        }
 
   
-//         const objetoModificado = {
-//           nombre: asignatura.nombre,
-//           codigo: asignatura.codigo,
-//           guia_catedra: asignatura.guia_catedra
-//         };
+        const objetoModificado = {
+          nombre: asignatura.nombre,
+          codigo: asignatura.codigo,
+          guia_catedra: asignatura.guia_catedra
+        };
   
-//         fetch('http://localhost:3000/asignatura/' + asignatura.id, {
-//           method: 'PATCH',
-//           headers: {
-//             'Content-Type': 'application/json'
-//           },
-//           body: JSON.stringify(objetoModificado)
-//         })
-//         .then(response => {
-//           if (!response.ok) {
-//             throw new Error('Error al modificar el objeto');
-//           }
-//           return response.json();
-//         })
-//         .then(data => {
-//           console.log('Objeto modificado con éxito:', data);
-//         })
-//         .catch(error => {
-//           console.error('Error al realizar la solicitud:', error);
-//         });
-//       }
-//     });
+        fetch('http://localhost:3000/asignatura/' + asignatura.id, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(objetoModificado)
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Error al modificar el objeto');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Objeto modificado con éxito:', data);
+        })
+        .catch(error => {
+          console.error('Error al realizar la solicitud:', error);
+        });
+      }
+    });
   
-//     alert('Modificación del curso guardada con éxito!');
-//   }
+    alert('Modificación del curso guardada con éxito!');
+  }
   

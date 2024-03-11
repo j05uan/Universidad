@@ -41,7 +41,7 @@ const guardarCurso= async(nuevoCurso)=>{
     }
 }
 const botonesCursos = async () => {
-    const contenedorCursos = document.getElementById('OpcionesCursos');
+    const contenedorCursos = document.getElementById('contenidoContenedor');
     contenedorCursos.innerHTML = `
       <form>
           <button class="botonsCursos" id="botoncrearCurso" type="button" onclick="formularioCrearCurso()">Crear Cursos</button>

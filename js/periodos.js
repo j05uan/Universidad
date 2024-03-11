@@ -41,7 +41,7 @@ const guardarPeriodo = async (nuevoPeriodo) => {
 }
 
 const botonesPeriodos = async () => {
-    const contenedorPeriodos = document.getElementById('OpcionesPeriodos');
+    const contenedorPeriodos = document.getElementById('contenidoContenedor');
     contenedorPeriodos.innerHTML = `
       <form>
           <button class="botonsPeriodos" id="botoncrearPeriodo" type="button" onclick="formularioCrearPeriodo()">Crear Periodos</button>

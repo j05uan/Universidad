@@ -1,6 +1,47 @@
 
+const listaSalones = [];
+
+const loadSalones = async () => {
+    try {
+        listaSalones.length = 0;
+        const respuesta = await fetch('http://localhost:3000/salones');
+
+        if (!respuesta.ok) {
+            throw new Error('Error al cargar Salones. Estado: ' + respuesta.status);
+        }
+        const Salon = await respuesta.json();
+        listaSalones.push(...Salon);
+
+    } catch (error) {
+        console.error("Error al cargar Salon", error.message);
+    }
+}
+
+const guardarSalon = async (nuevoSalon) => {
+    try {
+
+        const respuesta = await fetch('http://localhost:3000/salones', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(nuevoSalon),
+        });
+
+        if (!respuesta.ok) {
+            throw new Error('Error al crear el salon. Estado: ' + respuesta.status);
+        }
+        const SalonCreado = await respuesta.json();
+
+
+        console.log('Salon creado:', SalonCreado);
+
+    } catch (error) {
+        console.error("Error al cargar Salon", error.message);
+    }
+}
 const botonesSalones = async () => {
-    const contenedorSalones = document.getElementById('OpcionesSalones');
+    const contenedorSalones = document.getElementById('contenidoContenedor');
     contenedorSalones.innerHTML = `
       <form>
           <button class="botonsSalones" id="botoncrearSalon" type="button" onclick="formularioCrearSalon()">Crear Salones</button>

@@ -1,6 +1,48 @@
 
+const listaTarifas = [];
+
+const loadTarifas = async () => {
+    try {
+        listaTarifas.length = 0;
+        const respuesta = await fetch('http://localhost:3000/tarifas');
+
+        if (!respuesta.ok) {
+            throw new Error('Error al cargar Tarifas. Estado: ' + respuesta.status);
+        }
+        const Tarifa = await respuesta.json();
+        listaTarifas.push(...Tarifa);
+
+    } catch (error) {
+        console.error("Error al cargar Tarifa", error.message);
+    }
+}
+
+const guardarTarifa = async (nuevaTarifa) => {
+    try {
+
+        const respuesta = await fetch('http://localhost:3000/tarifas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(nuevaTarifa),
+        });
+
+        if (!respuesta.ok) {
+            throw new Error('Error al crear la tarifa. Estado: ' + respuesta.status);
+        }
+        const TarifaCreada = await respuesta.json();
+
+
+        console.log('Tarifa creada:', TarifaCreada);
+
+    } catch (error) {
+        console.error("Error al cargar Tarifa", error.message);
+    }
+}
+
 const botonesTarifas = async () => {
-    const contenedorTarifas = document.getElementById('OpcionesTarifas');
+    const contenedorTarifas = document.getElementById('contenidoContenedor');
     contenedorTarifas.innerHTML = `
       <form>
           <button class="botonsTarifas" id="botoncrearTarifa" type="button" onclick="formularioCrearTarifa()">Crear Tarifas</button>

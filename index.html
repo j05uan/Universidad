@@ -51,6 +51,8 @@
                Ver Facultad
             </button>
             </div>
+            <!-- <h3>
+                La Facultad de Ingeniería es un centro educativo de excelencia que ofrece una amplia gama de programas de ingeniería, respaldados por un cuerpo docente altamente calificado y recursos tecnológicos de vanguardia. En este ambiente dinámico, los estudiantes se sumergen en un entorno de aprendizaje que fomenta la innovación, la investigación y la aplicación práctica de los conocimientos adquiridos.</h3> -->
         </div>
 
             <div class="Programas" id="FacultadDerecho">  
@@ -61,6 +63,7 @@
             <button class="ProgramasButton">
                 Ver Facultad
             </button>
+            <h3></h3>
             </div>
         </div>
 
@@ -72,6 +75,7 @@
             <button class="ProgramasButton">
                Ver Facultad
             </button>
+            <h3></h3>
             </div>
     </div>
         </section>
@@ -104,10 +108,6 @@
             <h1>Universidad Carmen Felisa Amaya Ronderos</h1>
         </section>
         <section class="contenedor" id="contenedor">
-                <header id="headContenedor">
-                    <i onclick="inicio()" class="bi bi-backspace"></i>
-                    <h1>Hola</h1>
-                </header>
                 <!-- Opciones principales de la pagina  -->
             <div id="contenidoContenedor">
                 <section class="secciones" id="Departamentos">
@@ -174,6 +174,15 @@
                     <div class="Informacion" id="opcionesSalones">
                     </div>
                 </section>
+                <Section class="secciones" id="Maticulas">
+                    <div id="botonMatriculas">
+                        <button onclick="botonesMatriculas()">Matriculas</button>
+                    </div>
+                    <div class="Informacion" id="OpcionesMatriculas">
+                    </div>
+
+                </Section>
+                
             </div>           
         </section>        
     </main>
@@ -189,6 +198,8 @@
     <script src="js/utils.js"></script>
     <script src="js/salones.js"></script>
     <script src="js/paginaprincipal.js"></script>
+    <script src="js/horarios.js"></script>
+    <script src="js/matriculas.js"></script>
     <script>
         const rutaHead=document.getElementById("Navs")
         window.addEventListener("scroll", function(){

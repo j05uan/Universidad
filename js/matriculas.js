@@ -41,7 +41,7 @@ const guardarMatricula = async (nuevaMatricula) => {
 }
 
 const botonesMatriculas = async () => {
-    const contenedorMatriculas = document.getElementById('OpcionesMatriculas');
+    const contenedorMatriculas = document.getElementById('contenidoContenedor');
     contenedorMatriculas.innerHTML = `
       <form>
           <button class="botonsMatriculas" id="botoncrearMatricula" type="button" onclick="formularioCrearMatricula()">Crear Matriculas</button>

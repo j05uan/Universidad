@@ -95,6 +95,19 @@
       "fecha_nacimiento": "1992-05-15",
       "sexo": "Femenino",
       "programa_id": 2
+    },
+    {
+      "id": 1,
+      "nombre": "a",
+      "apellido": "a",
+      "tipo_documento": "cc",
+      "numero_documento": "12",
+      "ciudad_residencia": "buc",
+      "direccion": "dea",
+      "telefono": "311",
+      "fecha_nacimiento": "02/02/2002",
+      "sexo": "masculino",
+      "programa_id": "1"
     }
   ],
   "cursos": [
