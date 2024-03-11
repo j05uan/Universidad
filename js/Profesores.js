@@ -43,7 +43,7 @@ const guardarProfesor = async (nuevoProfesor) => {
 }
 
 const botonesProfesor=async()=>{
-    const opcion3 =document.getElementById('atras3')
+    
     const contenedor4 =document.getElementById('contenidoContenedor');
     contenedor4.innerHTML = `
       <form>
@@ -52,22 +52,20 @@ const botonesProfesor=async()=>{
           <button class="botonsProfesor" id="botonmostrarListado" type="button" onclick="mostrarListadoProfesores()">Ver Listado de Profesores</button>
           <div id="crearProfesor"></div>
           <div id="listadoProfesores"></div>
-          <button id="atras" class="atras" onclick="volverInicio()">atras</button>
+          <button id="atras1" class="atras" onclick="volverInicio()">atras</button>
           
       </form>
   `;
 
   stylesContenedorNuevo(contenedor4);
-  limpiarpantalla();
-  opcion3.style.display='none'
-   
+    
 }
 
 const formularioCrearProfesor = async () => {
     const boton1 = document.getElementById('botoncrearProfesor');
     const boton2 = document.getElementById('botonmodificarProfesor');
     const boton3 = document.getElementById('botonmostrarListado');
-    const contenedorProfesores = document.getElementById('contenidoContenedor');
+    const contenedorProfesores = document.getElementById('crearProfesor');
     contenedorProfesores.innerHTML = `
       <form id="MenuCrearProfesor">
         <h3>Menu Crear Profesores</h3>
@@ -173,7 +171,7 @@ const verificarProfesores = async () => {
 }
 
 const modificarTipoDocumento = () => {
-    const contenedorProfesores = document.getElementById('Profesores');
+    const contenedorProfesores = document.getElementById('crearProfesor');
     contenedorProfesores.innerHTML = `
     <form id="MenuModificarProfesor">
     <h3>Menu modificar Tipo de Documento</h3>
@@ -185,7 +183,7 @@ const modificarTipoDocumento = () => {
 }
 
 const modificarNumeroDocumento = () => {
-    const contenedorProfesores = document.getElementById('Profesores');
+    const contenedorProfesores = document.getElementById('crearProfesor');
     contenedorProfesores.innerHTML = `
     <form id="MenuModificarProfesor">
     <h3>Menu modificar Número de Documento</h3>
@@ -197,7 +195,7 @@ const modificarNumeroDocumento = () => {
 }
 
 const modificarNombreProfesor = () => {
-    const contenedorProfesores = document.getElementById('Profesores');
+    const contenedorProfesores = document.getElementById('crearProfesor');
     contenedorProfesores.innerHTML = `
     <form id="MenuModificarProfesor">
     <h3>Menu modificar Nombre</h3>
@@ -209,7 +207,7 @@ const modificarNombreProfesor = () => {
 }
 
 const modificarApellidoProfesor = () => {
-    const contenedorProfesores = document.getElementById('Profesores');
+    const contenedorProfesores = document.getElementById('crearProfesor');
     contenedorProfesores.innerHTML = `
     <form id="MenuModificarProfesor">
     <h3>Menu modificar Apellido</h3>
@@ -221,7 +219,7 @@ const modificarApellidoProfesor = () => {
 }
 
 const modificarDepartamentoId = () => {
-    const contenedorProfesores = document.getElementById('Profesores');
+    const contenedorProfesores = document.getElementById('crearProfesor');
     contenedorProfesores.innerHTML = `
     <form id="MenuModificarProfesor">
     <h3>Menu modificar ID del Departamento</h3>
@@ -234,11 +232,20 @@ const modificarDepartamentoId = () => {
 
 const mostrarListadoProfesores = async () => {
     await loadProfesores();
-    const contenedor2 = document.getElementById('OpcionesProfesores');
+    const boton1 = document.getElementById('botoncrearProfesor');
+    const boton2 = document.getElementById('botonmodificarProfesor');
+    const boton3 = document.getElementById('botonmostrarListado');
+    const atras1 = document.getElementById('atras1');
+    atras1.style.display = 'none';
+    boton1.style.display = 'none';
+    boton2.style.display = 'none';
+    boton3.style.display = 'none';
+    const contenedor2 = document.getElementById('crearProfesor');
     stylesContenedorNuevo(contenedor2);
-    limpiarpantalla();
-    const listadoProfesores = document.getElementById('listadoProfesores');
+    const listadoProfesores = document.getElementById('crearProfesor');
     listadoProfesores.style.display = 'flex';
+    const ul = document.createElement("ul");
+
     
     for (const Profesor of listaProfesores) {
         const li = document.createElement('li');
@@ -250,15 +257,8 @@ const mostrarListadoProfesores = async () => {
 
     const volverButton = document.createElement('button');
     volverButton.textContent = 'Volver al Formulario';
-    volverButton.addEventListener('click', volverFormularioProfesores);
+    volverButton.addEventListener('click', botonesProfesor);
     listadoProfesores.appendChild(volverButton);
 }
 
-const volverFormularioProfesores = () => {
-    const ProfesoresForm = document.getElementById('crearProfesor');
-    const listadoProfesores = document.getElementById('listadoProfesores');
-
-    listadoProfesores.style.display = 'none';
-    ProfesoresForm.style.display = 'block';
-}
 

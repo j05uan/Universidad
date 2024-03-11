@@ -38,13 +38,12 @@ const guardarHorario = async (nuevoHorario) => {
 }
 
 const opcionesHorarios = async () => {
-    const contenedor2 = document.getElementById('OpcionesHorarios');
+    const contenedor2 = document.getElementById('contenidoContenedor');
     contenedor2.innerHTML = `
       <form>
           <button class="botonsHorarios" id="botoncrearHorario" type="button" onclick="formularioCrearHorario()">Crear Horario</button>
           <button class="botonsHorarios" id="botonmostrarListado" type="button" onclick="mostrarListadoHorarios()">Ver Listado de Horarios</button>
           <div id="crearHorario"></div>
-          <div id="listadoHorarios"></div>
           <button id="atras" class="atras" onclick="volverInicio()">Atrás</button>
       </form>`;
     stylesContenedorNuevo(contenedor2);
@@ -147,7 +146,7 @@ const crearHorario = async () => {
 
 
 const formularioAgregarAsignaturasAlHorario=async()=>{
-    const contenedor=document.getElementById('');
+    const contenedor=document.getElementById('crearHorario');
     contenedor.innerHTML=`
     <form id="MenuAgregarAsignaturasAHorario">
     <h3>Menu Agregar Asignaturas al Horario</h3>

@@ -5,6 +5,12 @@
       "codigo": "P24-01",
       "ano": 2024,
       "semestre": 1
+    },
+    {
+      "id": 1,
+      "codigo": "",
+      "ano": null,
+      "semestre": null
     }
   ],
   "programas": [
@@ -39,6 +45,12 @@
       "costo_credito": 1100,
       "periodo_id": 1,
       "programa_id": 2
+    },
+    {
+      "id": 1,
+      "costo_credito": "",
+      "periodo_id": "",
+      "programa_id": ""
     }
   ],
   "departamentos": [
@@ -97,7 +109,7 @@
       "programa_id": 2
     },
     {
-      "id": 1,
+      "id": "1",
       "nombre": "a",
       "apellido": "a",
       "tipo_documento": "cc",
@@ -122,6 +134,12 @@
       "nombre": "Álgebra Lineal",
       "codigo": "ALG-LI",
       "guia_catedra": "URL_Guia_Catedra.pdf"
+    },
+    {
+      "id": 1,
+      "nombre": "",
+      "codigo": "",
+      "guia_catedra": ""
     }
   ],
   "salones": [

@@ -48,19 +48,19 @@ const botonesTarifas = async () => {
           <button class="botonsTarifas" id="botoncrearTarifa" type="button" onclick="formularioCrearTarifa()">Crear Tarifas</button>
           <button class="botonsTarifas" id="botonmodificarTarifa" type="button" onclick="modificarTarifa()">Modificar Tarifas</button>
           <button class="botonsTarifas" id="botonmostrarListado" type="button" onclick="mostrarListadoTarifas()">Ver Listado de Tarifas</button>
-          <div id="tarifass"></div>
+          <div id="crearTarifa"></div>
+          <div id="listadoPTarifas"></div>
           <button id="atras" class="atras" onclick="volverInicio()">atras</button>
       </form>`;
 
     stylesContenedorNuevo(contenedorTarifas);
-    limpiarpantalla();
 }
 
 const formularioCrearTarifa = async () => {
   const boton1 = document.getElementById('botoncrearTarifa');
   const boton2 = document.getElementById('botonmodificarTarifa');
   const boton3 = document.getElementById('botonmostrarListado');
-  const contenedorTarifas = document.getElementById('tarifass');
+  const contenedorTarifas = document.getElementById('crearTarifa');
   contenedorTarifas.innerHTML = `
     <form id="MenuCrearTarifa">
       <h3>Menu Crear Tarifas</h3>
@@ -78,7 +78,6 @@ const formularioCrearTarifa = async () => {
   boton1.style.display = 'none';
   boton2.style.display = 'none';
   boton3.style.display = 'none';
-  await crearTarifas();
 }
 
 const crearTarifas = async () => {
@@ -190,11 +189,16 @@ const modificarProgramaId = () => {
 
 const mostrarListadoTarifas = async () => {
   await loadTarifas();
-  const contenedor2 = document.getElementById('OpcionesTarifas');
-  stylesContenedorNuevo(contenedor2);
-  limpiarpantalla();
-  const listadoTarifas = document.getElementById('listadoTarifas');
+  const boton1 = document.getElementById('botoncrearTarifa');
+  const boton2 = document.getElementById('botonmodificarTarifa');
+  const boton3 = document.getElementById('botonmostrarListado');
+    atras.style.display = 'none';
+    boton1.style.display = 'none';
+    boton2.style.display = 'none';
+    boton3.style.display = 'none';
+  const listadoTarifas = document.getElementById('crearTarifa');
   listadoTarifas.style.display = 'flex';
+  const ul = document.createElement("ul");
   
   for (const Tarifa of listaTarifas) {
       const li = document.createElement('li');
@@ -206,14 +210,6 @@ const mostrarListadoTarifas = async () => {
 
   const volverButton = document.createElement('button');
   volverButton.textContent = 'Volver al Formulario';
-  volverButton.addEventListener('click', volverFormularioTarifas);
+  volverButton.addEventListener('click', botonesTarifas);
   listadoTarifas.appendChild(volverButton);
-}
-
-const volverFormularioTarifas = () => {
-  const TarifasForm = document.getElementById('crearTarifa');
-  const listadoTarifas = document.getElementById('listadoTarifas');
-
-  listadoTarifas.style.display = 'none';
-  TarifasForm.style.display = 'block';
 }

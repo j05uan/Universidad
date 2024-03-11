@@ -47,19 +47,19 @@ const botonesPeriodos = async () => {
           <button class="botonsPeriodos" id="botoncrearPeriodo" type="button" onclick="formularioCrearPeriodo()">Crear Periodos</button>
           <button class="botonsPeriodos" id="botonmodificarPeriodo" type="button" onclick="modificarPeriodo()">Modificar Periodos</button>
           <button class="botonsPeriodos" id="botonmostrarListado" type="button" onclick="mostrarListadoPeriodos()">Ver Listado de Periodos</button>
-          <div id="periodoss"></div>
-          <button id="atras" class="atras" onclick="volverInicio()">atras</button>
+          <div id="crearPeriodo"></div>
+
+          <button id="atras1" class="atras" onclick="volverInicio()">atras</button>
       </form>`;
 
     stylesContenedorNuevo(contenedorPeriodos);
-    limpiarpantalla();
 }
 
 const formularioCrearPeriodo = async () => {
     const boton1 = document.getElementById('botoncrearPeriodo');
     const boton2 = document.getElementById('botonmodificarPeriodo');
     const boton3 = document.getElementById('botonmostrarListado');
-    const contenedorPeriodos = document.getElementById('periodoss');
+    const contenedorPeriodos = document.getElementById('crearPeriodo');
     contenedorPeriodos.innerHTML = `
       <form id="MenuCrearPeriodo">
         <h3>Menu Crear Periodos</h3>
@@ -69,16 +69,15 @@ const formularioCrearPeriodo = async () => {
         <input type="number" id="anoPeriodo" required>
         <label for="semestrePeriodo">Semestre del Periodo:</label>
         <input type="number" id="semestrePeriodo" required>
-        <!-- Puedes agregar más campos aquí según los requisitos de tu aplicación -->
+        <button type="button" onclick="crearPeriodos()">Crear Periodo</button>    
         <button id="atras" class="atras" onclick="botonesPeriodos()">Atrás</button>
       </form>
   `;
-    const atras = document.getElementById('atras');
+    const atras = document.getElementById('atras1');
     atras.style.display = 'none';
     boton1.style.display = 'none';
     boton2.style.display = 'none';
     boton3.style.display = 'none';
-    await crearPeriodos();
 }
 
 
@@ -163,7 +162,7 @@ const verificarPeriodos = async () => {
 }
 
 const modificarCodigoPeriodo = () => {
-    const contenedorPeriodos = document.getElementById('Periodos');
+    const contenedorPeriodos = document.getElementById('crearPeriodo');
     contenedorPeriodos.innerHTML = `
     <form id="MenuModificarPeriodo">
     <h3>Menu modificar Código</h3>
@@ -175,7 +174,7 @@ const modificarCodigoPeriodo = () => {
 }
 
 const modificarAnoPeriodo = () => {
-    const contenedorEstudiantes = document.getElementById('crearEstudiante');
+    const contenedorEstudiantes = document.getElementById('crearPeriodo');
     contenedorEstudiantes.innerHTML = `
     <form id="MenuModificarPeriodo">
     <h3>Menu modificar Año</h3>
@@ -187,7 +186,7 @@ const modificarAnoPeriodo = () => {
 }
 
 const modificarSemestrePeriodo = () => {
-    const contenedorEstudiantes = document.getElementById('crearEstudiante');
+    const contenedorEstudiantes = document.getElementById('crearPeriodo');
     contenedorEstudiantes.innerHTML = `
     <form id="MenuModificarPeriodo">
     <h3>Menu modificar Semestre</h3>
@@ -200,15 +199,23 @@ const modificarSemestrePeriodo = () => {
 
 const mostrarListadoPeriodos = async () => {
   await loadEstudiantes();
-  const contenedor2 = document.getElementById('OpcionesPeriodos');
-  stylesContenedorNuevo(contenedor2);
-  limpiarpantalla();
-  const listadoPeriodos = document.getElementById('listadoPeriodos');
+  const boton1 = document.getElementById('botoncrearPeriodo');
+    const boton2 = document.getElementById('botonmodificarPeriodo');
+    const boton3 = document.getElementById('botonmostrarListado');
+    const atras1 = document.getElementById('atras1');
+    atras1.style.display = 'none';
+    boton1.style.display = 'none';
+    boton2.style.display = 'none';
+    boton3.style.display = 'none';  
+    const contenedor2 = document.getElementById('crearPeriodo');
+    stylesContenedorNuevo(contenedor2);
+  const listadoPeriodos = document.getElementById('crearPeriodo');
   listadoPeriodos.style.display = 'flex';
+  const ul = document.createElement("ul");
   
   for (const Periodo of listaPeriodos) {
       const li = document.createElement('li');
-      li.textContent = `ID: ${Periodo.id}, Nombre: ${Periodo.nombre}, Edad: ${Periodo.edad}, Email: ${Periodo.email}`;
+      li.textContent = `codigo: ${Periodo.codigo}, ano: ${Periodo.ano}, semestre: ${Periodo.semestre}`;
       ul.appendChild(li);
   }
   listadoPeriodos.innerHTML = '';
@@ -216,15 +223,9 @@ const mostrarListadoPeriodos = async () => {
 
   const volverButton = document.createElement('button');
   volverButton.textContent = 'Volver al Formulario';
-  volverButton.addEventListener('click', volverFormularioPeriodos);
+  volverButton.addEventListener('click', botonesPeriodos);
   listadoPeriodos.appendChild(volverButton);
 }
 
-const volverFormularioPeriodos = () => {
-  const PeriodosForm = document.getElementById('crearPeriodo');
-  const listadoPeriodos = document.getElementById('listadoPeriodos');
 
-  listadoPeriodos.style.display = 'none';
-  PeriodosForm.style.display = 'block';
-}
 

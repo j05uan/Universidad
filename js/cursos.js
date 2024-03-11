@@ -48,20 +48,23 @@ const botonesCursos = async () => {
           <button class="botonsCursos" id="botonmodificarCurso" type="button" onclick="modificarCurso()">Modificar Cursos</button>
           <button class="botonsCursos" id="botonmostrarListado" type="button" onclick="mostrarListadoCursos()">Ver Listado de Cursos</button>
           <div id="OpcionesCursos"></div>
-          <div id="listadoCursos"></div>
 
           <button id="atras" class="atras" onclick="volverInicio()">atras</button>
       </form>`;
 
     stylesContenedorNuevo(contenedorCursos);
-    limpiarpantalla();
 }
 
 const formularioCrearCurso = async () => {
   const boton1 = document.getElementById('botoncrearCurso');
   const boton2 = document.getElementById('botonmodificarCurso');
   const boton3 = document.getElementById('botonmostrarListado');
-  const contenedorCursos = document.getElementById('cursos');
+  const atras = document.getElementById('atras');
+  atras.style.display = 'none';
+  boton1.style.display = 'none';
+  boton2.style.display = 'none';
+  boton3.style.display = 'none';
+  const contenedorCursos = document.getElementById('OpcionesCursos');
   contenedorCursos.innerHTML = `
     <form id="MenuCrearCurso">
       <h3>Menu Crear Cursos</h3>
@@ -71,19 +74,15 @@ const formularioCrearCurso = async () => {
       <input type="text" id="codigoCurso" required>
       <label for="guiaCatedra">Guía de Cátedra:</label>
       <input type="text" id="guiaCatedra" required>
-      <button type="button" onclick="crearCurso()">Crear Curso</button>
+      <button type="button" onclick="crearCursos()">Crear Curso</button>
       <button id="atras" class="atras" onclick="botonesCursos()">atras</button>
     </form>
 `;
-  const atras = document.getElementById('atras');
-  atras.style.display = 'none';
-  boton1.style.display = 'none';
-  boton2.style.display = 'none';
-  boton3.style.display = 'none';
-  await crearCursos();
+  
 }
 
 const crearCursos = async () => {
+  
   const nombreInput = document.getElementById('nombreCurso');
   const codigoInput = document.getElementById('codigoCurso');
   const guiaCatedraInput = document.getElementById('guiaCatedra');
@@ -115,7 +114,7 @@ const modificarCurso = async () => {
   const boton1 = document.getElementById('botoncrearCurso');
   const boton2 = document.getElementById('botonmodificarCurso');
   const boton3 = document.getElementById('botonmostrarListado');
-  const contenedorCursos = document.getElementById('crearCurso');
+  const contenedorCursos = document.getElementById('OpcionesCursos');
   boton1.style.display = 'none';
   boton2.style.display = 'none';
   boton3.style.display = 'none';
@@ -137,7 +136,7 @@ const modificarCurso = async () => {
 const verificarCursos = async () => {
   const Estado = '';
   const nombre = document.getElementById('nombreCurso');
-  const contenedorCursos = document.getElementById('crearCurso');
+  const contenedorCursos = document.getElementById('OpcionesCursos');
   contenedorCursos.innerHTML = `
     <form id="MenuModificarCurso">
       <h3>Menu Mofificar Curso</h3>
@@ -157,7 +156,7 @@ const verificarCursos = async () => {
 }
 
 const modificarNombreCurso = () => {
-  const contenedorCursos = document.getElementById('Cursos');
+  const contenedorCursos = document.getElementById('OpcionesCursos');
   contenedorCursos.innerHTML = `
   <form id="MenuModificarCurso">
   <h3>Menu modificar Nombre</h3>
@@ -169,7 +168,7 @@ const modificarNombreCurso = () => {
 }
 
 const modificarCodigoCurso = () => {
-  const contenedorCursos = document.getElementById('Cursos');
+  const contenedorCursos = document.getElementById('OpcionesCursos');
   contenedorCursos.innerHTML = `
   <form id="MenuModificarCurso">
   <h3>Menu modificar Código</h3>
@@ -181,7 +180,7 @@ const modificarCodigoCurso = () => {
 }
 
 const modificarGuiaCatedra = () => {
-  const contenedorCursos = document.getElementById('Cursos');
+  const contenedorCursos = document.getElementById('OpcionesCursos');
   contenedorCursos.innerHTML = `
   <form id="MenuModificarCurso">
   <h3>Menu modificar Guía de Cátedra</h3>
@@ -194,11 +193,19 @@ const modificarGuiaCatedra = () => {
 
 const mostrarListadoCursos = async () => {
   await loadCursos();
+  const boton1 = document.getElementById('botoncrearCurso');
+  const boton2 = document.getElementById('botonmodificarCurso');
+  const boton3 = document.getElementById('botonmostrarListado');
+  const atras = document.getElementById('atras');
+  atras.style.display = 'none';
+  boton1.style.display = 'none';
+  boton2.style.display = 'none';
+  boton3.style.display = 'none';
   const contenedor2 = document.getElementById('OpcionesCursos');
   stylesContenedorNuevo(contenedor2);
-  limpiarpantalla();
-  const listadoCursos = document.getElementById('listadoCursos');
-  listaCursos.style.display = 'flex';
+  const listadoCursos = document.getElementById('OpcionesCursos');
+  listadoCursos.style.display = 'flex';
+  const ul = document.createElement("ul");
   
   for(const curso of listaCursos) {
       const li = document.createElement('li');
@@ -210,16 +217,8 @@ const mostrarListadoCursos = async () => {
 
   const volverButton = document.createElement('button');
   volverButton.textContent = 'Volver al Formulario';
-  volverButton.addEventListener('click', volverFormularioCursos());
+  volverButton.addEventListener('click', botonesCursos());
   listadoCursos.appendChild(volverButton);
-}
-
-const volverFormularioCursos = () => {
-  const cursosForm = document.getElementById('crearCurso');
-  const listadoCursos = document.getElementById('listadoCursos');
-
-  listadoCursos.style.display = 'none';
-  cursosForm.style.display = 'block';
 }
 
 

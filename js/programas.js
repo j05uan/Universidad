@@ -40,6 +40,35 @@ const guardarPrograma = async (nuevoPrograma) => {
     }
 }
 
+const mostrarListadoProgramas = async () => {
+  await loadProgramas();
+  const boton1 = document.getElementById('botoncrearPrograma');
+  const boton2 = document.getElementById('botonmodificarPrograma');
+  const boton3 = document.getElementById('mostrarListadoProgramas');
+  const atras = document.getElementById('atras1');
+    atras.style.display = 'none';
+    boton1.style.display = 'none';
+    boton2.style.display = 'none';
+    boton3.style.display = 'none';
+  
+  const listadoProgramas = document.getElementById('crearPrograma');
+  listadoProgramas.style.display = 'flex';
+  const ul = document.createElement("ul");
+  
+  for (const Programa of listaProgramas) {
+      const li = document.createElement('li');
+      li.textContent = `nombre: ${Programa.id}, nivel: ${Programa.nivel}`;
+      ul.appendChild(li);
+  }
+  listadoProgramas.innerHTML = '';
+  listadoProgramas.appendChild(ul);
+
+  const volverButton = document.createElement('button');
+  volverButton.textContent = 'Volver al Formulario';
+  volverButton.addEventListener('click', botonesProgramas);
+  listadoProgramas.appendChild(volverButton);
+}
+
 const botonesProgramas = async () => {
 
     const contenedor2 = document.getElementById('contenidoContenedor');
@@ -47,23 +76,22 @@ const botonesProgramas = async () => {
       <form>
           <button class="botonsProgramas" id="botoncrearPrograma" type="button" onclick="formularioCrearPrograma()">Crear Programas</button>
           <button class="botonsProgramas" id="botonmodificarPrograma" type="button" onclick="()">Modificar Programas</button>
-          <button class="botonsProgramas" id="botonmostrarListado" type="button" onclick="mostrarListado()">Ver Listado de Programas</button>
-          <div id="programass"></div>
-          <button id="atras" class="atras" onclick="volverInicio()">atras</button>
+          <button class="botonsProgramas" id="mostrarListadoProgramas" type="button" onclick="mostrarListadoProgramas()">Ver Listado de Programas</button>
+          <div id="crearPrograma"></div>
+          <button id="atras1" class="atras" onclick="volverInicio()">atras</button>
           
       </form>
   `;
   stylesContenedorNuevo(contenedor2);
-  limpiarpantalla();
   
 }
 
 const formularioCrearPrograma = async () => {
   const boton1 = document.getElementById('botoncrearPrograma');
   const boton2 = document.getElementById('botonmodificarPrograma');
-  const boton3 = document.getElementById('botonmostrarListado');
-  const atras = document.getElementById('atras');
-  const contenedorProgramas = document.getElementById('programass');
+  const boton3 = document.getElementById('mostrarListadoProgramas');
+  const atras = document.getElementById('atras1');
+  const contenedorProgramas = document.getElementById('crearPrograma');
   contenedorProgramas.innerHTML = `
     <form id="MenuCrearPrograma">
       <h3>Menu Crear Programas</h3>
@@ -110,7 +138,7 @@ const crearProgramas = async () => {
 const modificarPrograma = async () => {
   const boton1 = document.getElementById('botoncrearPrograma');
   const boton2 = document.getElementById('botonmodificarPrograma');
-  const boton3 = document.getElementById('botonmostrarListado');
+  const boton3 = document.getElementById('mostrarListadoProgramas');
   const contenedorProgramas = document.getElementById('crearEPrograma');
   boton1.style.display = 'none';
   boton2.style.display = 'none';
@@ -175,33 +203,5 @@ const modificarNivelProgramas = () => {
   </form>
   `;
 }
-const mostrarListadoProgramas = async () => {
-  await loadProgramas();
-  const contenedor2 = document.getElementById('OpcionesProgramas');
-  stylesContenedorNuevo(contenedor2);
-  limpiarpantalla();
-  const listadoProgramas = document.getElementById('listadoProgramas');
-  listadoProgramas.style.display = 'flex';
-  
-  for (const Programa of listaProgramas) {
-      const li = document.createElement('li');
-      li.textContent = `nombre: ${Programa.id}, nivel: ${Programa.nivel}`;
-      ul.appendChild(li);
-  }
-  listadoProgramas.innerHTML = '';
-  listadoProgramas.appendChild(ul);
 
-  const volverButton = document.createElement('button');
-  volverButton.textContent = 'Volver al Formulario';
-  volverButton.addEventListener('click', volverFormularioProgramas);
-  listadoProgramas.appendChild(volverButton);
-}
-
-const volverFormularioProgramas = () => {
-  const ProgramasForm = document.getElementById('crearPrograma');
-  const listadoProgramas = document.getElementById('listadoProgramas');
-
-  listadoProgramas.style.display = 'none';
-  ProgramasForm.style.display = 'block';
-}
 

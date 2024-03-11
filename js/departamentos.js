@@ -41,29 +41,36 @@ const guardarDEpartamentos= async(nuevoDepartamento)=>{
     }
 }
 const botonesDepartamento=async()=>{
-  
+    
     const contenedordepartamentos =document.getElementById('contenidoContenedor');
     contenedordepartamentos.innerHTML = `
       <form>
-          <button class="botonsEstudiantes" id="botoncrearDepartamento"type="button" onclick="formularioCrearDEpartamento()">Crear Departamentos</button>
-          <button class="botonsEstudiantes" id="botonmodificarDepartamento" type="button" onclick="modificarDepartamento()">Modificar Departamentos</button>
-          <button class="botonsEstudiantes" id="botonmostrarListado" type="button" onclick="mostrarListadoDepartamentos()">Ver Listado de Deprtamentos</button>
+          <button class="botonsDepartamentos" id="botoncrearDepartamento"type="button" onclick="formularioCrearDEpartamento()">Crear Departamentos</button>
+          <button class="botonsDepartamentos" id="botonmodificarDepartamento" type="button" onclick="modificarDepartamento()">Modificar Departamentos</button>
+          <button class="botonsDepartamentos" id="botonmostrarListado" type="button" onclick="mostrarListadoDepartamentos()">Ver Listado de Deprtamentos</button>
           <div id="crearDepartamento"></div>
-          <div id="listadoDepartamentos"></div>
-          <button id="atras" class="botonsEstudiantes" onclick="volverInicio()">atras</button>
+          <button id="atras" class="botonsDepartamentos" onclick="volverInicio()">atras</button>
           
       </form>`;
    
       stylesContenedorNuevo(contenedordepartamentos);
-      limpiarpantalla();
-
+      document.getElementById('botonDepartamentos').style.display='none';
+      document.getElementById('botonEstudiantes').style.display='none';
+      document.getElementById('botonProsfesores').style.display='none';
+      document.getElementById('botonTarifas').style.display='none';
+      document.getElementById('botonAsignaturas').style.display='none';
+      document.getElementById('botonPeriodos').style.display='none';
+      document.getElementById('botonProgramas').style.display='none';
+      document.getElementById('botonCursos').style.display='none';
+      document.getElementById('botonSalones').style.display='none';
+      document.getElementById('botonMatriculas').style.display='none';
 
 }
 const formularioCrearDEpartamento= async()=>{
     const boton1= document.getElementById('botoncrearDepartamento');
     const boton2 = document.getElementById('botonmodificarDepartamento')
     const boton3 = document.getElementById('botonmostrarListado')
-    const contenedorestu = document.getElementById('contenidoContenedor');
+    const contenedorestu = document.getElementById('crearDepartamento');
     contenedorestu.innerHTML = `
       <form id="MenuCrearDepartamento">
         <h3>Menu Crear Departamentos</h3>
@@ -91,7 +98,7 @@ const creardepartamentos= async ()=>{
         nombre:nombre,
     }
     await guardarDEpartamentos(nuevo);
-    await loadEstudiantes(); 
+    await loaddepartamentos(); 
     IdInput.value='';
     alert('Departamento creado con éxito!');
     return nuevo;
@@ -129,17 +136,17 @@ const modificarDepartamento =async()=>{
 const verificarDepartamentos= async=()=>{
     const Estado='';
     const nombre=document.getElementById('nombreDepartamento')
-    const contenedorestu = document.getElementById('crearEstudiante');
+    const contenedorestu = document.getElementById('crearDepartamento');
     contenedorestu.innerHTML = `
-      <form id="MenuModificarEstudiante">
+      <form id="MenuModificarDepartamento">
         <h3>Menu Mofificar Departamento</h3>
         <label for="nombreDepartamento">Nombre del Departamento:</label>
         <input type="number" id="nombreDepartamento" required>
       </form>
   `;
-    for ( const estudiante of listaEstiudiantes){
-        if (estudiante[identificaion]===nombre){
-            alert('Estudiante Encontrado!');
+    for ( const departamento of listadepartamentos){
+        if (departamento[identificaion]===nombre){
+            alert('Departamento Encontrado!');
             Estado='Encontrado'
         }
         else{
@@ -150,26 +157,58 @@ const verificarDepartamentos= async=()=>{
     return [Estado, Departamentos]
 }
 const modificarNombreDepartamento=()=>{
-    const contenedorestu = document.getElementById('crearEstudiante');
+    const contenedorestu = document.getElementById('crearDepartamento');
     contenedorestu.innerHTML = `
     <form id="MenuModificarDepartamento">
     <h3>Menu modificar Nombre</h3>
-    <label for="nombreEstudiante">Nombre del Departamento:</label>
-    <input type="text" id="nombreDepartamento" required></input>
+    <label for="newnombreDepartamento">Nombre del Departamento:</label>
+    <input type="text" id="newnombreDepartamento" required></input>
     
     <button type="button" onclick="GuardarModificionDepartamento()">Guardar Modificion Departamento</button>
     
         
-    <button id="atras" class="atras" onclick="modificarDepartamento()">atras</button>
+    <button id="atras" class="atras" onclick="guardarModificacionDepartamentos()">atras</button>
     </form>
     `;
 };
+const guardarModificacionDepartamentos = async (valor) => {
+    const newnombreDepartamento = document.getElementById('newnombreDepartamento').value;
+  
 
+  
+        const objetoModificado = {
+          nombre: newnombreDepartamento,
+        };
+  
+        fetch('http://localhost:3000/departamento/' + departamento.id, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(objetoModificado)
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Error al modificar el objeto');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Objeto modificado con éxito:', data);
+        })
+        .catch(error => {
+          console.error('Error al realizar la solicitud:', error);
+        });
+      
+    ;
+  
+    alert('Modificación del curso guardada con éxito!');
+  }
 const mostrarListadoDepartamentos = async () => {
-    await loadEstudiantes();
-    const contenedor2 = document.getElementById('OpcionesDepartamentos');
+    await loaddepartamentos();
+    const contenedor2 = document.getElementById('crearDepartamento');
     stylesContenedorNuevo(contenedor2);
-    const listadoDepartamentos = document.getElementById('listadoDepartamentos');
+    const listadoDepartamentos = document.getElementById('crearDepartamento');
     listadoDepartamentos.style.display = 'flex';
     
     const ul = document.createElement("ul");
@@ -190,7 +229,7 @@ const mostrarListadoDepartamentos = async () => {
 
 const volverFormularioDepartamentos = () => {
     const DepartamentosForm = document.getElementById('crearDepartamento');
-    const listadoDepartamentos = document.getElementById('listadoDepartamentos');
+    const listadoDepartamentos = document.getElementById('crearDepartamento');
 
     listadoDepartamentos.style.display = 'none';
     DepartamentosForm.style.display = 'block';

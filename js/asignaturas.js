@@ -44,18 +44,16 @@ const guardarAsignatura= async(nuevoAsignatura)=>{
 
 const botonesAsignatura = async () => {
     
-    const contenedorAsignaturas = document.getElementById('opcionesAsignaturas');
+    const contenedorAsignaturas = document.getElementById('contenidoContenedor');
     contenedorAsignaturas.innerHTML = `
       <form>
           <button class="botonsAsignaturas" id="botoncrearAsignatura" type="button" onclick="formularioCrearAsignatura()">Crear Asignaturas</button>
           <button class="botonsAsignaturas" id="botonmodificarAsignatura" type="button" onclick="modificarAsignatura()">Modificar Asignaturas</button>
-          <button class="botonsAsignaturas" id="botonmostrarListado" type="button" onclick="mostrarListado()">Ver Listado de Asignaturas</button>
-          <div id="asignaturass"></div>
-          <div id="listadoAsignaturas"></div>
+          <button class="botonsAsignaturas" id="botonmostrarListado" type="button" onclick="mostrarListadoAsignaturas()">Ver Listado de Asignaturas</button>
+          <div id="crearAsignatura"></div>
           <button id="atras" class="atras" onclick="volverInicio()">atras</button>
       </form>`;
     
-    limpiarpantalla();
     stylesContenedorNuevo(contenedorAsignaturas);
     
 }
@@ -64,7 +62,7 @@ const formularioCrearAsignatura = async () => {
     const boton1 = document.getElementById('botoncrearAsignatura');
     const boton2 = document.getElementById('botonmodificarAsignatura');
     const boton3 = document.getElementById('botonmostrarListado');
-    const contenedorAsignaturas = document.getElementById('asignaturass');
+    const contenedorAsignaturas = document.getElementById('crearAsignatura');
     contenedorAsignaturas.innerHTML = `
       <form id="MenuCrearAsignatura">
         <h3>Menu Crear Asignaturas</h3>
@@ -86,6 +84,7 @@ const formularioCrearAsignatura = async () => {
         <button id="atras" class="atras" onclick="botonesAsignatura()">Atrás</button>
       </form>
   `;
+  contenedorAsignaturas.style.gap='2em';
     const atras = document.getElementById('atras');
     atras.style.display = 'none';
     boton1.style.display = 'none';
@@ -139,7 +138,7 @@ const modificarAsignatura = async () => {
     const boton1 = document.getElementById('botoncrearAsignatura');
     const boton2 = document.getElementById('botonmodificarAsignatura');
     const boton3 = document.getElementById('botonmostrarListado');
-    const contenedorAsignaturas = document.getElementById('contenidoContenedor');
+    const contenedorAsignaturas = document.getElementById('crearAsignatura');
     boton1.style.display = 'none';
     boton2.style.display = 'none';
     boton3.style.display = 'none';
@@ -188,7 +187,7 @@ const verificarAsignaturas = async () => {
 }
 
 const modificarCodigoAsignatura = () => {
-    const contenedorAsignaturas = document.getElementById('Asignaturas');
+    const contenedorAsignaturas = document.getElementById('crearAsignatura');
     contenedorAsignaturas.innerHTML = `
     <form id="MenuModificarAsignatura">
     <h3>Menu Modificar Código de la Asignatura</h3>
@@ -200,7 +199,7 @@ const modificarCodigoAsignatura = () => {
 }
 
 const modificarCreditosAsignatura = () => {
-    const contenedorAsignaturas = document.getElementById('Asignaturas');
+    const contenedorAsignaturas = document.getElementById('crearAsignatura');
     contenedorAsignaturas.innerHTML = `
     <form id="MenuModificarAsignatura">
     <h3>Menu Modificar Créditos de la Asignatura</h3>
@@ -212,7 +211,7 @@ const modificarCreditosAsignatura = () => {
 }
 
 const modificarCuposAsignatura = () => {
-    const contenedorAsignaturas = document.getElementById('Asignaturas');
+    const contenedorAsignaturas = document.getElementById('crearAsignatura');
     contenedorAsignaturas.innerHTML = `
     <form id="MenuModificarAsignatura">
     <h3>Menu Modificar Cupos Disponibles de la Asignatura</h3>
@@ -223,7 +222,7 @@ const modificarCuposAsignatura = () => {
     </form>`;
 }
 const modificarCursoAsignatura = () => {
-    const contenedorAsignaturas = document.getElementById('Asignaturas');
+    const contenedorAsignaturas = document.getElementById('crearAsignatura');
     contenedorAsignaturas.innerHTML = `
     <form id="MenuModificarAsignatura">
     <h3>Menu Modificar Curso de la Asignatura</h3>
@@ -235,7 +234,7 @@ const modificarCursoAsignatura = () => {
 }
 
 const modificarProfesorAsignatura = () => {
-    const contenedorAsignaturas = document.getElementById('Asignaturas');
+    const contenedorAsignaturas = document.getElementById('crearAsignatura');
     contenedorAsignaturas.innerHTML = `
     <form id="MenuModificarAsignatura">
     <h3>Menu Modificar Profesor de la Asignatura</h3>
@@ -247,7 +246,7 @@ const modificarProfesorAsignatura = () => {
 }
 
 const modificarProgramaAsignatura = () => {
-    const contenedorAsignaturas = document.getElementById('Asignaturas');
+    const contenedorAsignaturas = document.getElementById('crearAsignatura');
     contenedorAsignaturas.innerHTML = `
     <form id="MenuModificarAsignatura">
     <h3>Menu Modificar Programa de la Asignatura</h3>
@@ -258,8 +257,15 @@ const modificarProgramaAsignatura = () => {
     </form>`;
 }
 
-const modificarHorarioAsignatura = () => {
-    const contenedorAsignaturas = document.getElementById('Asignaturas');
+const modificarHorarioAsignatura = async() => {
+    const boton1 = document.getElementById('botoncrearAsignatura');
+    const boton2 = document.getElementById('botonmodificarAsignatura');
+    const boton3 = document.getElementById('botonmostrarListado');
+    atras.style.display = 'none';
+    boton1.style.display = 'none';
+    boton2.style.display = 'none';
+    boton3.style.display = 'none';  
+  const contenedorAsignaturas = document.getElementById('crearAsignatura');
     contenedorAsignaturas.innerHTML = `
     <form id="MenuModificarAsignatura">
     <h3>Menu Modificar Horario de la Asignatura</h3>
@@ -269,13 +275,18 @@ const modificarHorarioAsignatura = () => {
     </form>`;
 }
 
-const  mostrarListado=async()=>{
+const  mostrarListadoAsignaturas=async()=>{
     await loadAsignaturas();
-    const contenedor2 = document.getElementById('OpcionesAsignaturas');
-    stylesContenedorNuevo(contenedor2);
-    limpiarpantalla();
-    const listadoAsignaturas= document.getElementById('listadoAsignaturas');
-    listaAsignaturas.style.display='flex';
+    const boton1 = document.getElementById('botoncrearAsignatura');
+    const boton2 = document.getElementById('botonmodificarAsignatura');
+    const boton3 = document.getElementById('botonmostrarListado');
+    atras.style.display = 'none';
+    boton1.style.display = 'none';
+    boton2.style.display = 'none';
+    boton3.style.display = 'none';  
+    const listadoAsignaturas= document.getElementById('crearAsignatura');
+    listadoAsignaturas.style.display='flex';
+    const ul = document.createElement("ul");
     
     for(const asignatura of listaAsignaturas){
         const li=document.createElement('li');
@@ -287,18 +298,11 @@ const  mostrarListado=async()=>{
 
     const volverButton=document.createElement('button');
     volverButton.textContent='Volver al Formulario';
-    volverButton.addEventListener('click',volverFormulario);
+    volverButton.addEventListener('click',botonesAsignatura);
     listadoAsignaturas.appendChild(volverButton);
 }
 
-const volverFormulario=()=>{
-    const asignaturasForm=document.getElementById('crearAsignatura');
-    const listadoAsignaturas = document.getElementById('listadoEAsignatura');
 
-    listadoAsignaturas.style.display='none';
-    asignaturasForm.style.display='block';
-    
-}
 
 
 

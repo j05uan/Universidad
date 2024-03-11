@@ -46,20 +46,20 @@ const botonesSalones = async () => {
       <form>
           <button class="botonsSalones" id="botoncrearSalon" type="button" onclick="formularioCrearSalon()">Crear Salones</button>
           <button class="botonsSalones" id="botonmodificarSalon" type="button" onclick="modificarSalon()">Modificar Salones</button>
-          <button class="botonsSalones" id="botonmostrarListado" type="button" onclick="mostrarListadoSalones()">Ver Listado de Salones</button>
-          <div id="saloness"></div>
-          <button id="atras" class="atras" onclick="volverInicio()">atras</button>
+          <button class="botonsSalones" id="mostrarListadoSalones" type="button" onclick="mostrarListadoSalones()">Ver Listado de Salones</button>
+      
+          <div id="crearSalon"></div>
+          <button id="atras1" class="atras" onclick="volverInicio()">atras</button>
       </form>`;
 
     stylesContenedorNuevo(contenedorSalones);
-    limpiarpantalla();
 }
 
 const formularioCrearSalon = async () => {
   const boton1 = document.getElementById('botoncrearSalon');
   const boton2 = document.getElementById('botonmodificarSalon');
-  const boton3 = document.getElementById('botonmostrarListado');
-  const contenedorSalones = document.getElementById('salones');
+  const boton3 = document.getElementById('mostrarListadoSalones');
+  const contenedorSalones = document.getElementById('crearSalon');
   contenedorSalones.innerHTML = `
     <form id="MenuCrearSalon">
       <h3>Menu Crear Salones</h3>
@@ -74,7 +74,7 @@ const formularioCrearSalon = async () => {
       <button id="atras" class="atras" onclick="botonesSalones()">Atrás</button>
     </form>
 `;
-  const atras = document.getElementById('atras');
+  const atras = document.getElementById('atras1');
   atras.style.display = 'none';
   boton1.style.display = 'none';
   boton2.style.display = 'none';
@@ -205,11 +205,18 @@ const modificarPisoSalon = () => {
 
 const mostrarListadoSalones = async () => {
   await loadSalones();
-  const contenedor2 = document.getElementById('OpcionesSalones');
-  stylesContenedorNuevo(contenedor2);
-  limpiarpantalla();
-  const listadoSalones = document.getElementById('listadoSalones');
+  const boton1 = document.getElementById('botoncrearSalon');
+  const boton2 = document.getElementById('botonmodificarSalon');
+  const boton3 = document.getElementById('botonmostrarListado');
+  const atras1 = document.getElementById('atras1');
+    atras1.style.display = 'none';
+    boton1.style.display = 'none';
+    boton2.style.display = 'none';
+    boton3.style.display = 'none';
+
+  const listadoSalones = document.getElementById('crearSalon');
   listadoSalones.style.display = 'flex';
+  const ul = document.createElement("ul");
   
   for (const Salón of listaSalones) {
       const li = document.createElement('li');

@@ -3,8 +3,7 @@ const limpiarpantalla=()=>{
     listadeID=["botonDepartamentos", "botonEstudiantes","botonProsfesores","botonTarifas","botonAsignaturas","botonPeriodos","botonProgramas","botonCursos","botonSalones","botonMatriculas"];
 
     listadeID.forEach(seccion => {
-8
-        document.getElementById(seccion).style.display='none';
+        document.getElementById(seccion).style.display='none'
             
                
     });

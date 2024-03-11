@@ -45,14 +45,13 @@ const guardarEstudiante= async(nuevoEstudiante)=>{
 
 const opcionesEstudiantes= async ()=>{
    
-    const contenedor2 = document.getElementById('OpcionesEstudiantes');
+    const contenedor2 = document.getElementById('contenidoContenedor');
     contenedor2.innerHTML = `
       <form>
           <button class="botonsEstudiantes" id="botoncrearEstudinte"type="button" onclick="formularioCrearEstudiante()">Crear Estudinte</button>
           <button class="botonsEstudiantes" id="botonmodificarEstudinte" type="button" onclick="modificarEstudiante()">Modificar Estudinte</button>
           <button class="botonsEstudiantes" id="botonmostrarListado" type="button" onclick="mostrarListadoEstudiantes()">Ver Listado de Estudintes</button>
           <div id="crearEstudiante"></div>
-          <div id="listadoEstudiantes"></div>
           <button id="atras1" class="atras" onclick="volverInicio()">atras</button>
           
       </form>`;
@@ -262,14 +261,15 @@ const  mostrarListadoEstudiantes=async()=>{
     const boton1 = document.getElementById('botoncrearEstudinte');
     const boton2 = document.getElementById('botonmodificarEstudinte');
     const boton3 = document.getElementById('botonmostrarListado');
-    const contenedor2 = document.getElementById('OpcionesEstudiantes');const atras = document.getElementById('atras1');
+    const contenedor2 = document.getElementById('crearEstudiante');
+    const atras = document.getElementById('atras1');
     atras.style.display = 'none';
     boton1.style.display = 'none';
     boton2.style.display = 'none';
     boton3.style.display = 'none';
     stylesContenedorNuevo(contenedor2);
     
-    const listadoEstudiantes= document.getElementById('listadoEstudiantes');
+    const listadoEstudiantes= document.getElementById('crearEstudiante');
     console.log(listadoEstudiantes);
     listadoEstudiantes.style.display='flex';
     
