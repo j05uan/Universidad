@@ -44,7 +44,7 @@ const mostrarListadoProgramas = async () => {
   await loadProgramas();
   const boton1 = document.getElementById('botoncrearPrograma');
   const boton2 = document.getElementById('botonmodificarPrograma');
-  const boton3 = document.getElementById('mostrarListadoProgramas');
+  const boton3 = document.getElementById('mostraListadoProgramas');
   const atras = document.getElementById('atras1');
     atras.style.display = 'none';
     boton1.style.display = 'none';
@@ -75,8 +75,8 @@ const botonesProgramas = async () => {
     contenedor2.innerHTML = `
       <form>
           <button class="botonsProgramas" id="botoncrearPrograma" type="button" onclick="formularioCrearPrograma()">Crear Programas</button>
-          <button class="botonsProgramas" id="botonmodificarPrograma" type="button" onclick="()">Modificar Programas</button>
-          <button class="botonsProgramas" id="mostrarListadoProgramas" type="button" onclick="mostrarListadoProgramas()">Ver Listado de Programas</button>
+          <button class="botonsProgramas" id="botonmodificarPrograma" type="button" onclick="">Modificar Programas</button>
+          <button class="botonsProgramas" id="mostraListadoProgramas" type="button" onclick="mostrarListadoProgramas()">Ver Listado de Programas</button>
           <div id="crearPrograma"></div>
           <button id="atras1" class="atras" onclick="volverInicio()">atras</button>
           
@@ -89,7 +89,7 @@ const botonesProgramas = async () => {
 const formularioCrearPrograma = async () => {
   const boton1 = document.getElementById('botoncrearPrograma');
   const boton2 = document.getElementById('botonmodificarPrograma');
-  const boton3 = document.getElementById('mostrarListadoProgramas');
+  const boton3 = document.getElementById('mostraListadoProgramas');
   const atras = document.getElementById('atras1');
   const contenedorProgramas = document.getElementById('crearPrograma');
   contenedorProgramas.innerHTML = `
@@ -138,7 +138,7 @@ const crearProgramas = async () => {
 const modificarPrograma = async () => {
   const boton1 = document.getElementById('botoncrearPrograma');
   const boton2 = document.getElementById('botonmodificarPrograma');
-  const boton3 = document.getElementById('mostrarListadoProgramas');
+  const boton3 = document.getElementById('mostraListadoProgramas');
   const contenedorProgramas = document.getElementById('crearEPrograma');
   boton1.style.display = 'none';
   boton2.style.display = 'none';

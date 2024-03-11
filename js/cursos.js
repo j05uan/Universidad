@@ -46,10 +46,10 @@ const botonesCursos = async () => {
       <form>
           <button class="botonsCursos" id="botoncrearCurso" type="button" onclick="formularioCrearCurso()">Crear Cursos</button>
           <button class="botonsCursos" id="botonmodificarCurso" type="button" onclick="modificarCurso()">Modificar Cursos</button>
-          <button class="botonsCursos" id="botonmostrarListado" type="button" onclick="mostrarListadoCursos()">Ver Listado de Cursos</button>
+          <button class="botonsCursos" id="botonmostrarListado" type="button" onclick="mostrarListadoCursoss()">Ver Listado de Cursos</button>
           <div id="OpcionesCursos"></div>
 
-          <button id="atras" class="atras" onclick="volverInicio()">atras</button>
+          <button id="atras1" class="atras" onclick="volverInicio()">atras</button>
       </form>`;
 
     stylesContenedorNuevo(contenedorCursos);
@@ -75,7 +75,7 @@ const formularioCrearCurso = async () => {
       <label for="guiaCatedra">Guía de Cátedra:</label>
       <input type="text" id="guiaCatedra" required>
       <button type="button" onclick="crearCursos()">Crear Curso</button>
-      <button id="atras" class="atras" onclick="botonesCursos()">atras</button>
+      <button id="atras1" class="atras" onclick="botonesCursos()">atras</button>
     </form>
 `;
   
@@ -191,20 +191,20 @@ const modificarGuiaCatedra = () => {
   </form>`;
 }
 
-const mostrarListadoCursos = async () => {
+const mostrarListadoCursoss = async () => {
   await loadCursos();
   const boton1 = document.getElementById('botoncrearCurso');
   const boton2 = document.getElementById('botonmodificarCurso');
   const boton3 = document.getElementById('botonmostrarListado');
-  const atras = document.getElementById('atras');
+  const atras = document.getElementById('atras1');
   atras.style.display = 'none';
   boton1.style.display = 'none';
   boton2.style.display = 'none';
   boton3.style.display = 'none';
   const contenedor2 = document.getElementById('OpcionesCursos');
-  stylesContenedorNuevo(contenedor2);
+  stylesContenedorNuevo(contenidoContenedor);
   const listadoCursos = document.getElementById('OpcionesCursos');
-  listadoCursos.style.display = 'flex';
+  listadoCursos.style.display = 'block';
   const ul = document.createElement("ul");
   
   for(const curso of listaCursos) {

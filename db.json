@@ -7,7 +7,7 @@
       "semestre": 1
     },
     {
-      "id": 1,
+      "id": "1",
       "codigo": "",
       "ano": null,
       "semestre": null
@@ -47,7 +47,7 @@
       "programa_id": 2
     },
     {
-      "id": 1,
+      "id": "1",
       "costo_credito": "",
       "periodo_id": "",
       "programa_id": ""
@@ -120,6 +120,32 @@
       "fecha_nacimiento": "02/02/2002",
       "sexo": "masculino",
       "programa_id": "1"
+    },
+    {
+      "id": 1,
+      "nombre": "Juan",
+      "apellido": "mizamarzes",
+      "tipo_documento": "464",
+      "numero_documento": "64546",
+      "ciudad_residencia": "65456",
+      "direccion": "64564",
+      "telefono": "64546",
+      "fecha_nacimiento": "6456456",
+      "sexo": "gay",
+      "programa_id": "46546"
+    },
+    {
+      "id": 1,
+      "nombre": "alvaro",
+      "apellido": "martinez",
+      "tipo_documento": "cc",
+      "numero_documento": "189765789",
+      "ciudad_residencia": "bucaramanga",
+      "direccion": "centro",
+      "telefono": "3124578678",
+      "fecha_nacimiento": "03-07-2003",
+      "sexo": "masculino",
+      "programa_id": "1"
     }
   ],
   "cursos": [
@@ -136,7 +162,7 @@
       "guia_catedra": "URL_Guia_Catedra.pdf"
     },
     {
-      "id": 1,
+      "id": "1",
       "nombre": "",
       "codigo": "",
       "guia_catedra": ""

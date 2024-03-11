@@ -38,73 +38,111 @@ const volverInicio=()=>{
         const contenido=document.getElementById('contenidoContenedor');
         contenido.innerHTML=`
                 <section class="secciones" id="Departamentos">
+
                     <div id="botonDepartamentos">
                         <button onclick="botonesDepartamento()" >Departamentos</button>
                     </div>
+
                     <div class="Informacion" id="OpcionesDepartamentos">
                         <h2> En la Universidad Carmen Felisa Amaya Ronderos nos especializamos  </h2>
                     </div>
+
                 </section>
+                
                 <section class="secciones" id="Estudiantes">
+                    
                     <div  id="botonEstudiantes">
                         <button onclick="opcionesEstudiantes()">Estudiantes</button>
                     </div>
+
                     <div class="Informacion" id="OpcionesEstudiantes">
                     </div>
+
                 </section>
+                
                 <section class="secciones" id="Prosfesores">
+
                     <div id="botonProsfesores">
                         <button onclick="botonesProfesor()" >Prosfesores</button>
                     </div>
+
                     <div class="Informacion" id="OpcionesProfesores">
                     </div>
+
                 </section >
+
                 <section class="secciones" id="Tarifas">
+
                     <div id="botonTarifas">
                         <button onclick="botonesTarifas()">Tarifas</button>
                     </div>
+
                     <div class="Informacion" id="opcionesTarifas">
                     </div>
+
                 </section >
+
                 <section class="secciones" id="Asignaturas">
+                
                     <div id="botonAsignaturas">
                         <button onclick="botonesAsignatura()" >Asignaturas</button>
                     </div>
+
                     <div class="Informacion" id="opcionesAsignaturas">
                     </div>
+
                 </section >
+
                 <section class="secciones" id="Periodos">
+
                     <div id="botonPeriodos">
                         <button onclick="botonesPeriodos()" >Periodos</button>
                     </div>
+
                     <div class="Informacion" id="OpcionesPeriodos">
                     </div>
+
                 </section >
+
                 <section class="secciones" id="Programas">
+
                     <div id="botonProgramas">
                         <button onclick="botonesProgramas()" >Programas</button>
                     </div>
+
                     <div class="Informacion" id="opcionesProgramas">
                     </div>
+
                 </section >
+
                 <section class="secciones" id="Cursos">
+
                     <div id="botonCursos">
                         <button  onclick="botonesCursos()">Cursos</button>
                     </div >
+
                     <div class="Informacion" id="opcionesCursos">
                     </div>
+
                 </section >
+
                 <section class="secciones" id="Salones">
+
                     <div id="botonSalones">
                         <button  onclick="botonesSalones()">Salones</button>
                     </div class="Informacion">
+
                     <div class="Informacion" id="opcionesSalones">
                     </div>
+
                 </section>
+
                 <Section class="secciones" id="Maticulas">
+
                     <div id="botonMatriculas">
                         <button onclick="botonesMatriculas()">Matriculas</button>
                     </div>
+                    
                     <div class="Informacion" id="OpcionesMatriculas">
                     </div>
 

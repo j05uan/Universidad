@@ -56,7 +56,7 @@ const opcionesEstudiantes= async ()=>{
           
       </form>`;
     stylesContenedorNuevo(contenedor2);
-    limpiarpantalla();
+    
     
 
 }

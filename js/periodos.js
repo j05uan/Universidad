@@ -198,7 +198,7 @@ const modificarSemestrePeriodo = () => {
 }
 
 const mostrarListadoPeriodos = async () => {
-  await loadEstudiantes();
+  await loadPeriodos();
   const boton1 = document.getElementById('botoncrearPeriodo');
     const boton2 = document.getElementById('botonmodificarPeriodo');
     const boton3 = document.getElementById('botonmostrarListado');

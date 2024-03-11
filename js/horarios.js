@@ -1,3 +1,4 @@
+
 const listaHorarioss = [];
 
 const loadHorarios = async () => {
@@ -41,9 +42,10 @@ const opcionesHorarios = async () => {
     const contenedor2 = document.getElementById('contenidoContenedor');
     contenedor2.innerHTML = `
       <form>
-          <button class="botonsHorarios" id="botoncrearHorario" type="button" onclick="verificarAsignaturas2()">Crear Horario</button>
-          <button class="botonsHorarios" id="botonmostrarListado" type="button" onclick="mostrarListadoHorarios()">Ver Listado de Horarios</button>
+          <button class="botonsHorarios" id="botoncrearHorario" type="button" onclick="agregarAsignaturasAlHorario()">Crear Horario</button>
+          <div id="VerHorario"></div>
           <div id="crearHorario"></div>
+          <div id="AsignarHorario"></div>
           <button id="atras" class="atras" onclick="volverInicio()">Atrás</button>
       </form>`;
     stylesContenedorNuevo(contenedor2);
@@ -75,63 +77,18 @@ const opcionesHorarios = async () => {
 // }
 
 const crearHorario = async () => {
-    const programaInput = document.getElementById('programaHorario');
-    const salonIdInput = document.getElementById('salonIdHorario');
-    const profesorInput = document.getElementById('profesorHorario');
-
-    const programa = programaInput.value;
-    const salonId = salonIdInput.value;
-    const profesor = profesorInput.value;
    
-    const nuevoHhorario={
-        Id:length.listaHorarioss+1,
-        programa:"",
-        salonId:"",
-        Profesro:"",
-        Estudiantes:[],
-        horario:{
-        lunes:{"6-8":"",
-        "8-10":"",
-        "10-12":"Almuerzo",
-        "14-16":"",
-        "16-18":"",
-        "18-20":""},
-        Martes:{"6-8":"",
-        "8-10":"",
-        "10-12":"Almuerzo",
-        "14-16":"",
-        "16-18":"",
-        "18-20":""},
-        Miercoles:{"6-8":"",
-        "8-10":"",
-        "10-12":"Almuerzo",
-        "14-16":"",
-        "16-18":"",
-        "18-20":""},
-        Jueves:{"6-8":"",
-        "8-10":"",
-        "10-12":"Almuerzo",
-        "14-16":"",
-        "16-18":"",
-        "18-20":""},
-        Viernes:{"6-8":"",
-        "8-10":"",
-        "10-12":"Almuerzo",
-        "14-16":"",
-        "16-18":"",
-        "18-20":""}
-        
-    }   
-    }
+   const boton1 =document.getElementById('botoncrearHorario');
+   const boton2 =document.getElementById('botonmostrarListado');
+   const nuevoHorario = {
+    horario: {
+        lunes: {"6-8": "", "8-10": "", "10-12": "Almuerzo", "14-16": "", "16-18": "", "18-20": ""},
+        martes: {"6-8": "", "8-10": "", "10-12": "Almuerzo", "14-16": "", "16-18": "", "18-20": ""},
+        miercoles: {"6-8": "", "8-10": "", "10-12": "Almuerzo", "14-16": "", "16-18": "", "18-20": ""},
+        jueves: {"6-8": "", "8-10": "", "10-12": "Almuerzo", "14-16": "", "16-18": "", "18-20": ""},
+        viernes: {"6-8": "", "8-10": "", "10-12": "Almuerzo", "14-16": "", "16-18": "", "18-20": ""}
+    }};
     await formularioAgregarAsignaturasAlHorario()
-    const nuevoHorario = {
-        Id: listaHorarioss.length + 1,
-        programa: programa,
-        salonId: salonId,
-        Profesor: profesor,
-        Estudiantes: [],
-        horario: nuevoHhorario
-    };
 
     await guardarHorario(nuevoHorario);
     await loadHorarios();
@@ -159,12 +116,10 @@ const verificardisponibilidad=()=>{
                 }
                 else{
                     alert('No hay horarios Disponibles porque no hay suficientes salones, intenta agregar nuevos salones para obtener mas opciones de matriculas')
-                };
-
-                
-            };
-        };
-    };
+                }
+            }
+        }
+    }
     if(dispoibles>0){
         permiso=true
         let nuevohorarioDisponible={
@@ -220,11 +175,14 @@ const agregarAsignaturasAlHorario=async(valor)=>{
     Asignaturaviernes1416 :"", Asignaturaviernes1618:"",Asignaturaviernes1820:"" }};
     
     let opciones=[];
-    diccionarioAsignaturasHorarios.forEach(horaLibre => {
-        if(Asignatura===""){
-            opciones.push(horaLibre)
+    
+    for( let key in diccionarioAsignaturasHorarios.horario){
+        console.log(key,diccionarioAsignaturasHorarios.horario.key)
+        if(diccionarioAsignaturasHorarios.horario.key === undefined){
+            opciones.push(key);
         }
-    });
+    }
+
     await loadAsignaturas();
     const contenedor1 =document.getElementById('VerHorario');
     contenedor1.innerHTML=`
@@ -265,6 +223,9 @@ const agregarAsignaturasAlHorario=async(valor)=>{
     </div>
     </div>
     <div>
+    <div>    
+    <h1 id="Martes">Martes</h1>
+    </div>
     <!-- martes -->   
         <div>
         <h1 id="martes68"> 6-8</h1>
@@ -409,13 +370,14 @@ const agregarAsignaturasAlHorario=async(valor)=>{
     <form id="MenuAgregarAsignaturasAHorario">
     <h3>Menu Agregar Asignaturas al Horario</h3>
         <label for="horarioSeleccionado"> Selecciona una opcion:</label>
-        <select id="miSelect">
-        <option value="opcion1">Opción 1</option>
+        <select id="miSelect"></select>
+        
         <button type="button" onclick="()">Agregar</button>
         <button id="atras" class="atras" onclick="()">Atrás</button>
     </form>
   `
-  generarOpciones()
+
+  generarOpciones(opciones)
 }
 function generarOpciones(opciones) {
         let select = document.getElementById('miSelect');
