@@ -208,34 +208,52 @@ const mostrarListadoSalones = async () => {
   const boton2 = document.getElementById('botonmodificarSalon');
   const boton3 = document.getElementById('botonmostrarListado');
   const atras1 = document.getElementById('atras1');
-    atras1.style.display = 'none';
-    boton1.style.display = 'none';
-    boton2.style.display = 'none';
-    boton3.style.display = 'none';
+  atras1.style.display = 'none';
+  boton1.style.display = 'none';
+  boton2.style.display = 'none';
+  boton3.style.display = 'none';
 
   const listadoSalones = document.getElementById('crearSalon');
   listadoSalones.style.display = 'flex';
-  const ul = document.createElement("ul");
-  
-  for (const Salón of listaSalones) {
-      const li = document.createElement('li');
-      li.textContent = `ID: ${Salón.id}, tipo_documento: ${Salón.tipo_documento}, numero_documento: ${Salón.numero_documento}, nombre: ${Salón.nombre}, apellido: ${Salón.apellido}, departamento_id: ${Salón.departamento_id}`;
-      ul.appendChild(li);
-  }
   listadoSalones.innerHTML = '';
-  listadoSalones.appendChild(ul);
 
+  for (const salon of listaSalones) {
+    const salonDiv = document.createElement('div');
+    salonDiv.classList.add('salon-item'); 
+    const idElement = document.createElement('span');
+    idElement.textContent = `ID: ${salon.id}, `;
+    salonDiv.appendChild(idElement);
+
+    const tipoDocumentoElement = document.createElement('span');
+    tipoDocumentoElement.textContent = `Tipo de documento: ${salon.tipo_documento}, `;
+    salonDiv.appendChild(tipoDocumentoElement);
+
+    const numeroDocumentoElement = document.createElement('span');
+    numeroDocumentoElement.textContent = `Número de documento: ${salon.numero_documento}, `;
+    salonDiv.appendChild(numeroDocumentoElement);
+
+    const nombreElement = document.createElement('span');
+    nombreElement.textContent = `Nombre: ${salon.nombre}, `;
+    salonDiv.appendChild(nombreElement);
+
+    const apellidoElement = document.createElement('span');
+    apellidoElement.textContent = `Apellido: ${salon.apellido}, `;
+    salonDiv.appendChild(apellidoElement);
+
+    const departamentoIdElement = document.createElement('span');
+    departamentoIdElement.textContent = `ID del departamento: ${salon.departamento_id}`;
+    salonDiv.appendChild(departamentoIdElement);
+
+    listadoSalones.appendChild(salonDiv);
+  }
+
+ 
   const volverButton = document.createElement('button');
   volverButton.textContent = 'Volver al Formulario';
-  volverButton.addEventListener('click', volverFormularioSalones);
+  volverButton.addEventListener('click', botonesSalones);
   listadoSalones.appendChild(volverButton);
 }
 
-const volverFormularioSalones = () => {
-  const SalonesForm = document.getElementById('crearSalon');
-  const listadoSalones = document.getElementById('listadoSalones');
 
-  listadoSalones.style.display = 'none';
-  SalonesForm.style.display = 'block';
-}
+
 

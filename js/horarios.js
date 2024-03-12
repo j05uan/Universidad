@@ -42,45 +42,44 @@ const opcionesHorarios = async () => {
     const contenedor2 = document.getElementById('contenidoContenedor');
     contenedor2.innerHTML = `
       <form>
-          <button class="botonsHorarios" id="botoncrearHorario" type="button" onclick="agregarAsignaturasAlHorario()">Crear Horario</button>
+          <button class="botonsHorarios" id="botoncrearHorario" type="button" onclick="verificarAsignaturas2()">Crear Horario</button>
           <div id="VerHorario"></div>
           <div id="crearHorario"></div>
           <div id="AsignarHorario"></div>
-          <button id="atras" class="atras" onclick="volverInicio()">Atrás</button>
+          <button id="atras1" class="atras" onclick="volverInicio()">Atrás</button>
       </form>`;
     stylesContenedorNuevo(contenedor2);
-    return horario
+   
 }
 
-// const formularioCrearHorario = async (valor) => {
-//     const idAsignatura=valor;
-//     const boton1 = document.getElementById('botoncrearHorario');
-//     const boton3 = document.getElementById('botonmostrarListado');
-//     const contenedorHorarios = document.getElementById('crearHorario');
-//     contenedorHorarios.innerHTML = `
-//       <form id="MenuCrearHorario">
-//         <h3>Menu Crear Horario</h3>
-//         <label for="programaHorario">Programa:</label>
-//         <input type="text" id="programaHorario" required>
-//         <label for="salonIdHorario">ID del Salón:</label>
-//         <input type="text" id="salonIdHorario" required>
-//         <label for="profesorHorario">Profesor:</label>
-//         <input type="text" id="profesorHorario" required>
-//         <button type="button" onclick="crearHorarios()">Crear Horario</button>
-//         <button id="atras" class="atras" onclick="opcionesHorarios()">Atrás</button>
-//       </form>
-//   `;
-//     const atras = document.getElementById('atras');
-//     atras.style.display = 'none';
-//     boton1.style.display = 'none'
-//     boton3.style.display = 'none';
-// }
+const formularioCrearHorario = async (valor) => {
+    const idAsignatura=valor;
+    const boton1 = document.getElementById('botoncrearHorario');
+    const boton3 = document.getElementById('botonmostrarListado');
+    const contenedorHorarios = document.getElementById('crearHorario');
+    contenedorHorarios.innerHTML = `
+      <form id="MenuCrearHorario">
+        <label for="salonIdHorario">ID del Salón:</label>
+        <input type="text" id="salonIdHorario" required>
+        <label for="profesorHorario">Profesor:</label>
+        <input type="text" id="profesorHorario" required>
+        <button type="button" onclick="crearHorarios()">Crear Horario</button>
+        <button id="atras" class="atras" onclick="opcionesHorarios()">Atrás</button>
+      </form>
+  `;
+    const atras = document.getElementById('atras');
+    atras.style.display = 'none';
+    boton1.style.display = 'none'
+    boton3.style.display = 'none';
+}
 
 const crearHorario = async () => {
    
    const boton1 =document.getElementById('botoncrearHorario');
    const boton2 =document.getElementById('botonmostrarListado');
    const nuevoHorario = {
+    id:"",
+    idSalon:"",
     horario: {
         lunes: {"6-8": "", "8-10": "", "10-12": "Almuerzo", "14-16": "", "16-18": "", "18-20": ""},
         martes: {"6-8": "", "8-10": "", "10-12": "Almuerzo", "14-16": "", "16-18": "", "18-20": ""},
@@ -134,6 +133,10 @@ const verificardisponibilidad=()=>{
 
 const verificarAsignaturas2=async(codigo)=>{
     const contenedor1=document.getElementById('contenidoContenedor');
+    const atras1=document.getElementById('atras1');
+    const contenedor2=document.getElementById('botoncrearHorario');
+    atras1.style.display='none'
+    contenedor2.style.display='none'
     const listaAsignaturas=[];
     await loadAsignaturas();
     listaAsignaturas.forEach(Asignatura => {
@@ -142,8 +145,8 @@ const verificarAsignaturas2=async(codigo)=>{
             contenedor1.innerHTML=`
             <form>
                 <h1>¿Deseas Agregar un duplicado?</h1>
-                <button class="" id="" type="button" onclick="()">Crear Duplicado</button>
-                <button class="" id="" type="button" onclick="()">Ver el Horario de la Asignatura creada</button>
+                <button class="botonAsignarHorario" id="" type="button" onclick="agregarAsignaturasAlHorario()">Crear Duplicado</button>
+                <button class="botonAsignarHorario" id="" type="button" onclick="()">Ver el Horario de la Asignatura creada</button>
                 <div id="VerHorario"></div>
                 <div id="AsignarHorario"></div>
                 <button id="atras" class="atras" onclick="()">atras</button>
@@ -153,7 +156,7 @@ const verificarAsignaturas2=async(codigo)=>{
             contenedor1.innerHTML=`
             <form>
                 <h1>Agregar Horario A las Asignaturas</h1>
-                <button class="botonsTarifas" id="botoncrearTarifa" type="button" onclick="agregarAsignaturasAlHorario()">Continuar</button>
+                <button class="botonAsignarHorario" id="botoncrearTarifa" type="button" onclick="agregarAsignaturasAlHorario()">Continuar</button>
                 <div id="VerHorario"></div>
                 <div id="AsignarHorario"></div>
                 <button id="atras" class="atras" onclick="()">atras</button>
@@ -376,8 +379,18 @@ const agregarAsignaturasAlHorario=async(valor)=>{
         <button id="atras" class="atras" onclick="()">Atrás</button>
     </form>
   `
-
+    var asignaturaselect=document.getElementById('miSelect')
+    const asignatura=document.getElementById('codigoAsignatura')
   generarOpciones(opciones)
+  for( let key in diccionarioAsignaturasHorarios.horario){
+    console.log(key,diccionarioAsignaturasHorarios.horario.key)
+    if(diccionarioAsignaturasHorarios.horario === asignaturaselect){
+        diccionarioAsignaturasHorarios.horario=asignatura
+    }
+    guardarHorario()
+    alert('Asignatura creada con éxito!');
+}
+   
 }
 function generarOpciones(opciones) {
         let select = document.getElementById('miSelect');
@@ -390,181 +403,3 @@ function generarOpciones(opciones) {
         });
     }
 
- let horario=`<section id="horario">
-        <div>
-        <div>    
-        <h1 id="lunes">lunes</h1>
-        </div>
-            <div>
-            <h1 id="lunes68"> 6-8</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="lunes810"> 8-10</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="lunes1012"> 10-12</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="lunes1214">Almuerzo</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="lunes1416"> 14-16</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="lunes1618"> 16-18</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="lunes1820"> 18-20</h1>
-            <h1 id="Asignatura "> </h1>
-        </div>
-        </div>
-        <div>
-        <!-- martes -->
-        <div>    
-        <h1 id="martes">Martes</h1>
-        </div>
-            <div>
-            <h1 id="martes68"> 6-8</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="martes810"> 8-10</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="martes1012"> 10-12</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="martes1214">Almuerzo</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="martes1416"> 14-16</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="martes1618"> 16-18</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="martes1820"> 18-20</h1>   
-            <h1 id="Asignatura "> </h1>
-        </div>
-        </div>
-        
-        <div>         
-        <!-- miercoles -->
-        <div>    
-        <h1 id="miercoles">miercoles</h1>
-        <h1 id="Asignatura "> </h1>
-        </div>
-            <div>
-            <h1 id="miercoles68"> 6-8</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="miercoles810"> 8-10</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="miercoles1012"> 10-12</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="miercoles1214">Almuerzo</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="miercoles1416"> 14-16</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="miercoles1618"> 16-18</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="miercoles1820"> 18-20</h1>
-            <h1 id="Asignatura "> </h1>
-        </div>
-        </div>
-        
-        <div>
-        <!-- jueves -->
-        <div>    
-        <h1 id="jueves">jueves</h1>
-        </div>
-            <div>
-            <h1 id="jueves68"> 6-8</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="jueves810"> 8-10</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="jueves1012"> 10-12</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="jueves1214">Almuerzo</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="jueves1416"> 14-16</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="jueves1618"> 16-18</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="jueves1820"> 18-20</h1>
-            <h1 id="Asignatura "> </h1>
-        </div>
-        </div>
-        
-        <div>
-        <!-- viernes -->
-        <div>    
-        <h1 id="viernes">viernes</h1>
-        </div>
-            <div>
-            <h1 id="viernes68"> 6-8</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="viernes810"> 8-10</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="viernes1012"> 10-12</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="viernes1214">Almuerzo</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="viernes1416"> 14-16</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="viernes1618"> 16-18</h1>
-            <h1 id="Asignatura "> </h1>
-            </div>
-            <div>
-            <h1 id="viernes1820"> 18-20</h1>
-            <h1 id="Asignatura "> </h1>
-        </div>
-        </div>
-        
-    
-    <section>
-    `

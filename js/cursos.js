@@ -48,6 +48,7 @@ const botonesCursos = async () => {
           <button class="botonsCursos" id="botonmodificarCurso" type="button" onclick="modificarCurso()">Modificar Cursos</button>
           <button class="botonsCursos" id="botonmostrarListado" type="button" onclick="mostrarListadoCursoss()">Ver Listado de Cursos</button>
           <div id="OpcionesCursos"></div>
+          <div id="Listadocursos"></div>
 
           <button id="atras1" class="atras" onclick="volverInicio()">atras</button>
       </form>`;
@@ -202,24 +203,43 @@ const mostrarListadoCursoss = async () => {
   boton2.style.display = 'none';
   boton3.style.display = 'none';
   const contenedor2 = document.getElementById('OpcionesCursos');
-  stylesContenedorNuevo(contenidoContenedor);
+  stylesContenedorNuevo(contenedor2); 
   const listadoCursos = document.getElementById('OpcionesCursos');
   listadoCursos.style.display = 'block';
-  const ul = document.createElement("ul");
-  
-  for(const curso of listaCursos) {
-      const li = document.createElement('li');
-      li.textContent = `ID: ${curso.id}, Nombre: ${curso.nombre}, Codigo: ${curso.codigo}, guia_catedra: ${curso.guia_catedra}`;
-      ul.appendChild(li);
-  }
-  listadoCursos.innerHTML = '';
-  listadoCursos.appendChild(ul);
 
+  listadoCursos.innerHTML = '';
+
+  for(const curso of listaCursos) {
+    const cursoDiv = document.createElement('div');
+    cursoDiv.classList.add('curso-item'); 
+
+    const idElement = document.createElement('span');
+    idElement.textContent = `ID: ${curso.id}, `;
+    cursoDiv.appendChild(idElement);
+
+    const nombreElement = document.createElement('span');
+    nombreElement.textContent = `Nombre: ${curso.nombre}, `;
+    cursoDiv.appendChild(nombreElement);
+
+    const codigoElement = document.createElement('span');
+    codigoElement.textContent = `Codigo: ${curso.codigo}, `;
+    cursoDiv.appendChild(codigoElement);
+
+    const guiaElement = document.createElement('span');
+    guiaElement.textContent = `Guía Cátedra: ${curso.guia_catedra}`;
+    cursoDiv.appendChild(guiaElement);
+
+    listadoCursos.appendChild(cursoDiv);
+  }
+
+  // Botón para volver al formulario
   const volverButton = document.createElement('button');
   volverButton.textContent = 'Volver al Formulario';
-  volverButton.addEventListener('click', botonesCursos());
+  volverButton.addEventListener('click', botonesCursos);
   listadoCursos.appendChild(volverButton);
 }
+
+
 
 
 const guardarModificacionCurso = async (valor) => {

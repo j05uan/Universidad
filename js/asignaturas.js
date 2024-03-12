@@ -63,33 +63,93 @@ const formularioCrearAsignatura = async () => {
     const boton2 = document.getElementById('botonmodificarAsignatura');
     const boton3 = document.getElementById('botonmostrarListado');
     const contenedorAsignaturas = document.getElementById('crearAsignatura');
-    contenedorAsignaturas.innerHTML = `
+    contenedorAsignaturas.innerHTML="";
+    const div= document.createElement("div");
+    div.classList.add("FormularioCrearAsignaturas");
+    div.innerHTML=`
       <form id="MenuCrearAsignatura">
-        <h3>Menu Crear Asignaturas</h3>
-        <label for="curso_id">Id del curso:</label>
-        <input type="number" id="curso_id" required>
-        <label for="codigoAsignatura">Código de la Asignatura:</label>
-        <input type="text" id="codigoAsignatura" required>
-        <label for="creditosAsignatura">Créditos de la Asignatura:</label>
-        <input type="number" id="creditosAsignatura" required>
-        <label for="cuposAsignatura">Cupos Disponibles:</label>
-        <input type="number" id="cuposAsignatura" required>
-        <label for="profesorAsignatura">ID del Profesor:</label>
-        <input type="number" id="profesorAsignatura" required>
-        <label for="programaAsignatura">ID del Programa:</label>
-        <input type="number" id="programaAsignatura" required>
-        <button type="button" onclick="opcionesHorarios()">Agregar Horario</button>
+      <h3>Menu Crear Asignaturas</h3>
+
+      <label for="cuposInput">Curso ID</label>
+      <select id="cuposInput" class="form-control">
+        <option selected>Cursos...</option>
+        
+        <option>1</option>
+        
+      </select>
+
+          <label for="creditosInput">Créditos</label>
+          <input type="number" class="form-control" id="creditosInput" placeholder="Créditos">
+
+      <label for="profeInput">Profesor</label>
+      <select id="profeInput" class="form-control">
+        <option selected>Profesores...</option>
+        
+        <option>1</option>
+        
+      </select>
+      <label for="codigoAsignatura">Codigo de la Asignatura</label>
+      <input type="Text" class="form-control" id="codigoAsignatura" placeholder="Codigo">
+    <label for="cuposInput">Cupos disponibles</label>
+    <input type="number" class="form-control" id="cuposInput" placeholder="Créditos">
+
+      <label for="programaInput">Programas ID</label>
+      <select id="programaInput" class="form-control">
+        <option selected>Programas</option>
+        
+        <option>1</option>
+        
+      </select>
+
+        <button type="button" onclick="agregarAsignaturasAlHorario()">Agregar Horario</button>
         <button id="atras" class="atras" onclick="botonesAsignatura()">Atrás</button>
       </form>
   `;
-  contenedorAsignaturas.style.gap='2em';
+    contenedorAsignaturas.appendChild(div)
+    contenedorAsignaturas.style.gap='2em';
     const atras = document.getElementById('atras');
     atras.style.display = 'none';
     boton1.style.display = 'none';
     boton2.style.display = 'none';
     boton3.style.display = 'none';
 }
+const opcionesCursos=(cursos) =>{
+  
+  const cursosINput = document.getElementById("cuposInput");
+  cursosINput.innerHTML = "<option selected>Cursos</option>";
 
+  cursos.forEach(curso => {
+      const option = document.createElement("option");
+      option.value = curso.id;
+      option.text = curso.nombre;
+      inputIdAsignatura.appendChild(option);
+  });
+}
+const OpcionesProfesores=(profesores)=> {
+  
+  const profesorInput = document.getElementById("profeInput");
+  profesorInput.innerHTML = "<option selected>Profes</option>";
+
+  profesores.forEach(profes => {
+    const option = document.createElement("option");
+    option.value = profes.id;
+    option.text = profes.nombre;
+    inputIdprofe.appendChild(option);
+  });
+}
+
+const opcionesProgramas=(programas)=> {
+  
+  const inputIdPrograma = document.getElementById("InputidprogramaAsignatura");
+  inputIdPrograma.innerHTML = "<option selected>Programas</option>";
+
+  programas.forEach(programa => {
+    const option = document.createElement("option");
+    option.value = programa.id;
+    option.text = programa.nombre;
+    inputIdPrograma.appendChild(option);
+  });
+}
 
 const crearAsignaturas = async () => {
     const codigoInput = document.getElementById('codigoAsignatura');
@@ -114,7 +174,7 @@ const crearAsignaturas = async () => {
         profesor_id: IDprofe, 
         cupos_disponibles: cuposDisponibles,
         programa_id: Idprograma, 
-        horario_clases: [] 
+        horario_clases: asignaturaselect 
     };
 
     await guardarAsignatura(nuevaAsignatura);
@@ -126,6 +186,7 @@ const crearAsignaturas = async () => {
     profeInput.value ='';
     programaInput.value ='';
     idcursoInput.value ='';
+
 
     alert('Asignatura creada con éxito!');
 
