@@ -46,7 +46,7 @@ const botonesSalones = async () => {
       <form>
           <button class="botonsSalones" id="botoncrearSalon" type="button" onclick="formularioCrearSalon()">Crear Salones</button>
           <button class="botonsSalones" id="botonmodificarSalon" type="button" onclick="modificarSalon()">Modificar Salones</button>
-          <button class="botonsSalones" id="mostrarListadoSalones" type="button" onclick="mostrarListadoSalones()">Ver Listado de Salones</button>
+          <button class="botonsSalones" id="mostrarListadoSalones" type="button" onclick="mostrarListadoSaloness()">Ver Listado de Salones</button>
       
           <div id="crearSalon"></div>
           <button id="atras1" class="atras" onclick="volverInicio()">atras</button>
@@ -202,11 +202,11 @@ const modificarPisoSalon = () => {
   </form>`;
 }
 
-const mostrarListadoSalones = async () => {
+const mostrarListadoSaloness = async () => {
   await loadSalones();
   const boton1 = document.getElementById('botoncrearSalon');
   const boton2 = document.getElementById('botonmodificarSalon');
-  const boton3 = document.getElementById('botonmostrarListado');
+  const boton3 = document.getElementById('mostrarListadoSalones');
   const atras1 = document.getElementById('atras1');
   atras1.style.display = 'none';
   boton1.style.display = 'none';

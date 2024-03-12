@@ -1,7 +1,8 @@
 const estudiantes=()=>{
+    // alert('Profesor/Administrativo. Usuario: abc Contraseña: 123')
     const boton2=document.getElementById('ingresoEstudiante');
     const boton3=document.getElementById('ingresoProfesor');
-    const boton1=document.getElementById('ingresoAdministrativo');
+    
     const sectioncontraseña=document.getElementById('contraseña');
     const inicio=document.getElementById('inicio')
     sectioncontraseña.innerHTML= `
@@ -21,7 +22,7 @@ const estudiantes=()=>{
     })
     boton2.style.display='none';
     boton3.style.display='none';
-    boton1.style.display='none';
+    
     sectioncontraseña.style.display='flex';
     inicio.style.display='none';
     
