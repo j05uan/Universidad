@@ -1,5 +1,5 @@
 const estudiantes=()=>{
-    // alert('Profesor/Administrativo. Usuario: abc Contraseña: 123')
+    alert('Profesor/Administrativo. Usuario: Camilito Contraseña: 123')
     const boton2=document.getElementById('ingresoEstudiante');
     const boton3=document.getElementById('ingresoProfesor');
     
@@ -34,7 +34,7 @@ const verificaringreso = async () => {
     const contraseña = document.getElementById('contraseñaEstudiante').value;
     const Us = 'Juan López';
     const con = 'juancrackencampus';
-    const us2= 'abc';
+    const us2= 'Camilito';
     const con2='123';
 
     if (usuario === Us && contraseña === con) {

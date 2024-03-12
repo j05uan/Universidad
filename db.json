@@ -242,5 +242,19 @@
     }
   ],
   "horarios":[
-  ]
+    {"id": 1,
+      "idSalon":2 ,
+      "horario":
+        {"Asignaturalunes68":"","Asignaturalunes810":"","Asignaturalunes1012":"",
+    "Asignaturalunes1214":"", "Asignaturalunes1416":"", "Asignaturalunes1618":"", "Asignaturalunes1820":"", "Asignaturamartes68":"",
+    "Asignaturamartes810":"", "Asignaturamartes1012":"", "Asignaturamartes1214":"", "Asignaturamartes1416":"", "Asignaturamartes1618":"",
+    "Asignaturamartes1820":"", "Asignaturamiercoles68":"", "Asignaturamiercoles810":"", "Asignaturamiercoles1012":"", "Asignaturamiercoles1214":"",
+    "Asignaturamiercoles1416":"", "Asignaturamiercoles1618":"","Asignaturamiercoles1820" :"", "Asignaturajueves68":"", "Asignaturajueves810":"",
+    "Asignaturajueves1012":"", "Asignaturajueves1214":"", "Asignaturajueves1416":"", "Asignaturajueves1618":"",
+    "Asignaturajueves1820" :"", "Asignaturaviernes68":"", "Asignaturaviernes810":"", "Asignaturaviernes1012":"", "Asignaturaviernes1214":"",
+    "Asignaturaviernes1416" :"", "Asignaturaviernes1618":"","Asignaturaviernes1820":"" }
+    
+      
+  }]
+  
 }

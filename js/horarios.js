@@ -43,6 +43,8 @@ const opcionesHorarios = async () => {
     contenedor2.innerHTML = `
       <form>
           <button class="botonsHorarios" id="botoncrearHorario" type="button" onclick="verificarAsignaturas2()">Crear Horario</button>
+          <button class="botonsHorarios" id="botonmostrarListado" type="button" onclick="mostrarListadoHorarios()">Listado de Horarios</button>
+          
           <div id="VerHorario"></div>
           <div id="crearHorario"></div>
           <div id="AsignarHorario"></div>
@@ -168,7 +170,7 @@ const verificarAsignaturas2=async(codigo)=>{
 
 }
 const agregarAsignaturasAlHorario=async(valor)=>{
-    let diccionarioAsignaturasHorarios={Id:"",horario:{Asignaturalunes68:"",Asignaturalunes810:"",Asignaturalunes1012:"",
+    let diccionarioAsignaturasHorarios={id:"",horario:{Asignaturalunes68:"",Asignaturalunes810:"",Asignaturalunes1012:"",
     Asignaturalunes1214:"", Asignaturalunes1416:"", Asignaturalunes1618:"", Asignaturalunes1820:"", Asignaturamartes68:"",
     Asignaturamartes810:"", Asignaturamartes1012:"", Asignaturamartes1214:"", Asignaturamartes1416:"", Asignaturamartes1618:"",
     Asignaturamartes1820:"", Asignaturamiercoles68:"", Asignaturamiercoles810:"", Asignaturamiercoles1012:"", Asignaturamiercoles1214:"",
@@ -403,3 +405,35 @@ function generarOpciones(opciones) {
         });
     }
 
+    const mostrarListadoHorarios = async () => {
+        await loadEstudiantes();
+        const boton1 = document.getElementById('botoncrearHorario');
+        const boton3 = document.getElementById('botonmostrarListado');
+        const contenedor2 = document.getElementById('VerHorario');
+        const atras = document.getElementById('atras1');
+        atras.style.display = 'none';
+        boton1.style.display = 'none';
+        boton3.style.display = 'none';
+        stylesContenedorNuevo(contenedor2);
+        
+        const listadoHorarios = document.getElementById('VerHorario');
+        console.log(listaHorarioss);
+        listadoHorarios.style.display = 'flex';
+        
+        const ul = document.createElement("ul");
+        
+        for(const horario of listaHorarioss) {
+            const li = document.createElement('li');
+            li.textContent = `id: ${horario.id}, idSalon: ${horario.idSalon}, horario: ${horario.horario}`;
+            ul.appendChild(li); 
+        }
+        
+        listadoHorarios.innerHTML = ''; 
+        listadoHorarios.appendChild(ul);
+        
+        const volverButton = document.createElement('button');
+        volverButton.textContent = 'Volver al Formulario';
+        volverButton.addEventListener('click', opcionesHorarios);
+        listadoHorarios.appendChild(volverButton);
+    }
+    

@@ -1,6 +1,6 @@
 const limpiarpantalla=()=>{
     
-    listadeID=["botonDepartamentos", "botonEstudiantes","botonProsfesores","botonTarifas","botonAsignaturas","botonPeriodos","botonProgramas","botonCursos","botonSalones","botonMatriculas"];
+    listadeID=["botonDepartamentos", "botonEstudiantes","botonMHorario","botonProsfesores","botonTarifas","botonAsignaturas","botonPeriodos","botonProgramas","botonCursos","botonSalones","botonMatriculas"];
 
     listadeID.forEach(seccion => {
         document.getElementById(seccion).style.display='none'
@@ -142,11 +142,20 @@ const volverInicio=()=>{
                     <div id="botonMatriculas">
                         <button onclick="botonesMatriculas()">Matriculas</button>
                     </div>
-                    
+
                     <div class="Informacion" id="OpcionesMatriculas">
                     </div>
 
                 </Section>
+                <Section class="secciones" id="Horario">
+                    <div id="botonMHorario">
+                        <button onclick="opcionesHorarios()">MHorario</button>
+                    </div>
+                    <div class="Informacion" id="OpcionesMHorario">
+                    </div>
+
+                </Section>
+                
 
             </Section>
             `;
